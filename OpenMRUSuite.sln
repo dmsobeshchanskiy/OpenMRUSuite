@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenMRUSuite", "OpenMRUSuite\OpenMRUSuite.csproj", "{6577E830-56C2-4699-AD6D-41424571EF4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B0AF939E-454E-47A7-B39D-1B49F11E5C43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6577E830-56C2-4699-AD6D-41424571EF4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6577E830-56C2-4699-AD6D-41424571EF4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6577E830-56C2-4699-AD6D-41424571EF4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0AF939E-454E-47A7-B39D-1B49F11E5C43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0AF939E-454E-47A7-B39D-1B49F11E5C43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0AF939E-454E-47A7-B39D-1B49F11E5C43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0AF939E-454E-47A7-B39D-1B49F11E5C43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
