@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Interfaces\IMRUItem.cs" />
     <Compile Include="Interfaces\IMRUItemStorage.cs" />
+    <Compile Include="Interfaces\IMRUManager.cs" />
+    <Compile Include="Manager\MRUManager.cs" />
     <Compile Include="MRUItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\MRUItemFileStorage.cs" />
