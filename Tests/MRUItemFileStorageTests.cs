@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenMRUSuite.Common;
+using MRUCore;
 using OpenMRUSuite.DefaultStorage;
 
 namespace Tests
@@ -39,7 +39,7 @@ namespace Tests
         public void ShouldReturnEmptyListFromEmptyStorageFile()
         {
             MRUItemFileStorage fileStorage = new MRUItemFileStorage(path);
-            List<MRUItem> items = fileStorage.ReadMRUItems();
+            List<MRUItem> items = fileStorage.ReadMRUItems() as List<MRUItem>;
             Assert.IsNotNull(items);
             Assert.IsTrue(items.Count == 0);
         }
@@ -51,9 +51,11 @@ namespace Tests
             List<MRUItem> items = CreateItems();
             fileStorage.SaveMRUItems(items);
 
-            List<MRUItem> readedItems = fileStorage.ReadMRUItems();
+            List<MRUItem> readedItems = fileStorage.ReadMRUItems() as List<MRUItem>;
             Assert.IsNotNull(readedItems);
             Assert.IsTrue(readedItems.Count == 2);
+            Assert.IsTrue(readedItems[0].FilePath == "path1");
+            Assert.IsTrue(readedItems[0].Pinned);
         }
 
         

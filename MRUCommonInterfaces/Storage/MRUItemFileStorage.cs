@@ -1,5 +1,5 @@
-﻿using MRUCommonInterfaces;
-using OpenMRUSuite.Common;
+﻿using MRUCore;
+using MRUCore.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +16,7 @@ namespace OpenMRUSuite.DefaultStorage
         /// Read MRU items from xml file
         /// </summary>
         /// <returns>List of MRU items</returns>
-        public IEnumerable<IMRUItem> ReadMRUItems()
+        public IEnumerable<MRUItem> ReadMRUItems()
         {
             Stream deseralizationStream = null;
             try
@@ -47,7 +47,7 @@ namespace OpenMRUSuite.DefaultStorage
         /// Save MRU items to xml file
         /// </summary>
         /// <param name="items">MRU items to save</param>
-        public void SaveMRUItems(IEnumerable<IMRUItem> items)
+        public void SaveMRUItems(IEnumerable<MRUItem> items)
         {
             Stream seralizationStream = null;
             try
@@ -56,7 +56,7 @@ namespace OpenMRUSuite.DefaultStorage
                 XmlSerializer serializer = new XmlSerializer(typeof(MRUItemsHolder));
                 MRUItemsHolder holder = new MRUItemsHolder
                 {
-                    Items = items as IEnumerable<MRUItem>
+                    Items = items as List<MRUItem>
                 };
                 serializer.Serialize(seralizationStream, holder);
             }
@@ -109,7 +109,7 @@ namespace OpenMRUSuite.DefaultStorage
             try
             {
                 // file has correct information about MRU.
-                IEnumerable<IMRUItem> items = ReadMRUItems();
+                IEnumerable<MRUItem> items = ReadMRUItems();
             }
             catch
             {
@@ -122,7 +122,7 @@ namespace OpenMRUSuite.DefaultStorage
 
     public class MRUItemsHolder
     {
-        public IEnumerable<MRUItem> Items { get; set; }
+        public List<MRUItem> Items { get; set; }
     }
 }
 

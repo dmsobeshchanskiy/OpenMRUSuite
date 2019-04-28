@@ -40,10 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\IMRUItemStorage.cs" />
-    <Compile Include="Common\MRUItem.cs" />
     <Compile Include="DefaultStorage\MRUItemFileStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MRUCommonInterfaces\MRUCore.csproj">
+      <Project>{8314ec2e-cbf5-4bca-ab84-ef42a533769d}</Project>
+      <Name>MRUCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
