@@ -1,9 +1,7 @@
-﻿using MRUCore;
-using MRUCore.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace MRUCommonInterfaces.Interfaces
+namespace MRUCore.Interfaces
 {
     public interface IMRUManager
     {

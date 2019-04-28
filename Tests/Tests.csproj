@@ -58,7 +58,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MRUCommonInterfaces\MRUCore.csproj">
+    <ProjectReference Include="..\MRUCore\MRUCore.csproj">
       <Project>{8314EC2E-CBF5-4BCA-AB84-EF42A533769D}</Project>
       <Name>MRUCore</Name>
     </ProjectReference>

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B0AF939E-454E-47A7-B39D-1B49F11E5C43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRUCore", "MRUCommonInterfaces\MRUCore.csproj", "{8314EC2E-CBF5-4BCA-AB84-EF42A533769D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRUCore", "MRUCore\MRUCore.csproj", "{8314EC2E-CBF5-4BCA-AB84-EF42A533769D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
