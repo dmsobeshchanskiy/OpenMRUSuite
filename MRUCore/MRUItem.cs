@@ -9,6 +9,6 @@ namespace MRUCore
         public string FilePath { get; set; }
         public int SelectedCount { get; set; }
         public bool Pinned { get; set; }
-        public DateTime LastAccessedTime { get; set; }
+        public DateTime LastAccessedDate { get; set; }
     }
 }

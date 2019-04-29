@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MRUCore;
 using MRUCore.Manager;
+using System;
 using System.Collections.Generic;
 
 namespace Tests
@@ -23,7 +24,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void ShouldAddMRUItem()
+        public void ShouldAddNewMRUItem()
         {
             itemsFromEvent = new List<MRUItem>();
             InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
@@ -36,6 +37,28 @@ namespace Tests
             Assert.IsTrue(itemsFromEvent[2].FilePath == "path3");
             Assert.IsFalse(itemsFromEvent[2].Pinned);
             Assert.IsTrue(itemsFromEvent[2].SelectedCount == 1);
+        }
+
+        [TestMethod]
+        public void ShouldAddExistedMRUItem()
+        {
+            // in this case, existed item should be updated
+            itemsFromEvent = new List<MRUItem>();
+            InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
+            MRUManager manager = new MRUManager();
+            manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
+            manager.Initialize(storage);
+            // TODO: can fail in certain situatioin :-)
+            DateTime targetDt = new DateTime();
+            manager.AddFile("path1");
+            Assert.IsTrue(manager.MRUItems.Count == 2);
+            Assert.IsTrue(itemsFromEvent.Count == 2);
+            Assert.IsTrue(itemsFromEvent[0].FilePath == "path1");
+            Assert.IsTrue(itemsFromEvent[0].Pinned);
+            Assert.IsTrue(itemsFromEvent[0].SelectedCount == 2);
+            Assert.IsTrue(itemsFromEvent[0].LastAccessedDate.Year == targetDt.Year);
+            Assert.IsTrue(itemsFromEvent[0].LastAccessedDate.Month == targetDt.Month);
+            Assert.IsTrue(itemsFromEvent[0].LastAccessedDate.Day == targetDt.Day);
         }
 
         [TestMethod]
@@ -89,12 +112,17 @@ namespace Tests
             MRUManager manager = new MRUManager();
             manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
             manager.Initialize(storage);
+            // TODO: can fail in certain situatioin :-)
+            DateTime targetDt = new DateTime();
             manager.SelectFile("path1");
             Assert.IsTrue(manager.MRUItems.Count == 2);
             Assert.IsTrue(itemsFromEvent.Count == 2);
             Assert.IsTrue(itemsFromEvent[0].FilePath == "path1");
             Assert.IsTrue(itemsFromEvent[0].Pinned);
             Assert.IsTrue(itemsFromEvent[0].SelectedCount == 2);
+            Assert.IsTrue(itemsFromEvent[0].LastAccessedDate.Year == targetDt.Year);
+            Assert.IsTrue(itemsFromEvent[0].LastAccessedDate.Month == targetDt.Month);
+            Assert.IsTrue(itemsFromEvent[0].LastAccessedDate.Day == targetDt.Day);
         }
 
 
@@ -113,13 +141,15 @@ namespace Tests
             {
                 FilePath = "path1",
                 Pinned = true,
-                SelectedCount = 1
+                SelectedCount = 1,
+                LastAccessedDate = new DateTime(2019, 4, 27)
             };
             MRUItem item2 = new MRUItem
             {
                 FilePath = "path2",
                 Pinned = false,
-                SelectedCount = 3
+                SelectedCount = 3,
+                LastAccessedDate = new System.DateTime(2019, 4, 26)
             };
             items.Add(item1);
             items.Add(item2);

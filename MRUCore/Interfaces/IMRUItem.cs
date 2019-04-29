@@ -22,6 +22,6 @@ namespace MRUCore.Interfaces
         /// <summary>
         /// Show date of last access to the MRU
         /// </summary>
-        DateTime LastAccessedTime { get; }
+        DateTime LastAccessedDate { get; }
     }
 }
