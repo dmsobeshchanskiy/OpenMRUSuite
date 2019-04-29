@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MRUGuiLocalization.cs" />
     <Compile Include="MRUGuiLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewInterfaces\IMRUItemsView.cs" />

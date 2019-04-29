@@ -7,7 +7,7 @@ namespace MRUGuiCore.ViewInterfaces
     public interface IMRUItemsView
     {
         event Action ClearMRUItemsRequested;
-        void Initialize(IMRUManager manager);
+        void Initialize(IMRUManager manager, MRUGuiLocalization localization);
         void ShowMRUItems(List<IMRUItem> items);
         List<IMRUItemsView> ItemViews { get; }
     }
