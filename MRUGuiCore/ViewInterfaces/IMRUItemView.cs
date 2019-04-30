@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MRUCore.Interfaces;
+using System;
 
 namespace MRUGuiCore.ViewInterfaces
 {
@@ -7,5 +8,6 @@ namespace MRUGuiCore.ViewInterfaces
         event Action<string> PinItemRequested;
         event Action<string> DeleteItemRequested;
         event Action<string> ItemSelected;
+        void Initialize(IMRUItem item);
     }
 }

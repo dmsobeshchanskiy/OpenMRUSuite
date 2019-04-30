@@ -23,6 +23,11 @@
         /// </summary>
         public string OtherItemsLabel { get; set; }
         /// <summary>
+        /// Caption for action confirmation dialog
+        /// Default value is [Confirm action]
+        /// </summary>
+        public string ConfirmActionDialogCaption { get; set; }
+        /// <summary>
         /// Localization for MRU item control
         /// </summary>
         public MRUGuiItemLocalization ItemLocalization { get; set; }
@@ -33,6 +38,7 @@
             ClearAllLabel = "Clear list";
             PinnedItemsLabel = "Pinned items";
             OtherItemsLabel = "Other items";
+            ConfirmActionDialogCaption = "Confirm action";
             ItemLocalization = new MRUGuiItemLocalization();
         }
     }
