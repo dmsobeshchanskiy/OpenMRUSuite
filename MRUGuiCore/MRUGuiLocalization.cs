@@ -31,6 +31,10 @@
         /// Localization for MRU item control
         /// </summary>
         public MRUGuiItemLocalization ItemLocalization { get; set; }
+        /// <summary>
+        /// Localization for MRU messages
+        /// </summary>
+        public MRUMessages Messages { get; set; }
 
         public MRUGuiLocalization ()
         {
@@ -40,6 +44,7 @@
             OtherItemsLabel = "Other items";
             ConfirmActionDialogCaption = "Confirm action";
             ItemLocalization = new MRUGuiItemLocalization();
+            Messages = new MRUMessages();
         }
     }
 
@@ -60,6 +65,26 @@
         {
             PinItemLabel = "Pin item";
             DeleteItemLabel = "Delete item from list";
+        }
+    }
+
+    public class MRUMessages
+    {
+        /// <summary>
+        /// Confirmation message for item deleting
+        /// Default value is [This action will delete item from list. Continue?]
+        /// </summary>
+        public string AllowDeleteItem { get; set; }
+        /// <summary>
+        /// Confirmation message for items clearing
+        /// Default value is [This action will delete all items from list. Continue?]
+        /// </summary>
+        public string AllowClearList { get; set; }
+
+        public MRUMessages ()
+        {
+            AllowDeleteItem = "This action will delete item from list. Continue?";
+            AllowClearList = "This action will delete all items from list. Continue?";
         }
     }
 }

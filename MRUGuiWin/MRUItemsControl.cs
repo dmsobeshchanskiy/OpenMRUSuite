@@ -20,21 +20,32 @@ namespace MRUGuiWin
             this.localization = localization;
         }
 
-        public void ShowMRUItems(List<IMRUItem> items)
+        public void ShowMRUItems(List<MRUItemsContainer> containers)
         {
             ItemViews = new List<IMRUItemView>();
             int currentTopPosition = 0;
-            foreach(IMRUItem item in items)
+
+            foreach(MRUItemsContainer container in containers)
             {
-                MRUItemControl mruControl = new MRUItemControl();
-                mruControl.Initialize(item);
-                panelItems.Controls.Add(mruControl);
-                mruControl.Width = panelItems.Width - 2;
-                mruControl.Top = currentTopPosition;
-                mruControl.Left = 1;
-                mruControl.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
-                ItemViews.Add(mruControl);
-                currentTopPosition += mruControl.Height;
+                Label groupCaption = new Label
+                {
+                    Text = container.ContainerCaption,
+                    Left = 1,
+                    Top = currentTopPosition
+                };
+                currentTopPosition += TextRenderer.MeasureText(groupCaption.Text, groupCaption.Font).Height;
+                foreach (IMRUItem item in container.Items)
+                {
+                    MRUItemControl mruControl = new MRUItemControl();
+                    mruControl.Initialize(item);
+                    panelItems.Controls.Add(mruControl);
+                    mruControl.Width = panelItems.Width - 2;
+                    mruControl.Top = currentTopPosition;
+                    mruControl.Left = 1;
+                    mruControl.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
+                    ItemViews.Add(mruControl);
+                    currentTopPosition += mruControl.Height;
+                }
             }
         }
 

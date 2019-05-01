@@ -9,7 +9,7 @@ namespace MRUGuiCore.ViewInterfaces
         event Action ClearMRUItemsRequested;
         bool IsActionAllowed(string actionDescription);
         void Initialize(IMRUManager manager, MRUGuiLocalization localization);
-        void ShowMRUItems(List<IMRUItem> items);
+        void ShowMRUItems(List<MRUItemsContainer> containers);
         List<IMRUItemView> ItemViews { get; }
     }
 }
