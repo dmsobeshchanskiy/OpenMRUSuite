@@ -33,6 +33,7 @@ namespace MRUGuiWin
                     Left = 1,
                     Top = currentTopPosition
                 };
+                panelItems.Controls.Add(groupCaption);
                 currentTopPosition += TextRenderer.MeasureText(groupCaption.Text, groupCaption.Font).Height;
                 foreach (IMRUItem item in container.Items)
                 {
