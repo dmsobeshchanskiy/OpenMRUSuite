@@ -49,6 +49,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GuiLogicTests\MRUItemsViewMock.cs" />
+    <Compile Include="GuiLogicTests\MRUItemViewMock.cs" />
     <Compile Include="InMemoryMRUStorage.cs" />
     <Compile Include="MRUItemFileStorageTests.cs" />
     <Compile Include="MRUManagerTest.cs" />
@@ -61,6 +63,10 @@
     <ProjectReference Include="..\MRUCore\MRUCore.csproj">
       <Project>{8314EC2E-CBF5-4BCA-AB84-EF42A533769D}</Project>
       <Name>MRUCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MRUGuiCore\MRUGuiCore.csproj">
+      <Project>{601E27E1-FB38-4532-9BD4-541FB590DBD7}</Project>
+      <Name>MRUGuiCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

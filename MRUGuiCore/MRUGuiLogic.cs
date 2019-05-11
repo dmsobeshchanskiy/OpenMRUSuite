@@ -1,11 +1,7 @@
-﻿using MRUCore;
-using MRUCore.Interfaces;
+﻿using MRUCore.Interfaces;
 using MRUGuiCore.ViewInterfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MRUGuiCore
 {
