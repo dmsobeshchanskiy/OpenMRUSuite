@@ -62,7 +62,7 @@ namespace MRUGuiCore
             }
         }
 
-        private void Manager_MRUItemsListChanged(List<MRUItem> items)
+        private void Manager_MRUItemsListChanged()
         {
             ShowItemsOnView();
         }

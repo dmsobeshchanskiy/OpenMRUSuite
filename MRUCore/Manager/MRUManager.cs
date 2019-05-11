@@ -9,7 +9,7 @@ namespace MRUCore.Manager
     {
         public List<MRUItem> MRUItems { get; private set; }
 
-        public event Action<List<MRUItem>> MRUItemsListChanged;
+        public event Action MRUItemsListChanged;
 
         public void AddFile(string path)
         {
@@ -86,7 +86,7 @@ namespace MRUCore.Manager
         private void ReadMRUItem ()
         {
             MRUItems = storage.ReadMRUItems() as List<MRUItem>;
-            MRUItemsListChanged?.Invoke(MRUItems);
+            MRUItemsListChanged?.Invoke();
         }
     }
 }

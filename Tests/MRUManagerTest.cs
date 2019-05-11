@@ -12,38 +12,38 @@ namespace Tests
         [TestMethod]
         public void ShouldReadMRUItemsOnInitialization ()
         {
-            itemsFromEvent = new List<MRUItem>();
+            listChangedWasInvoked = false;
             InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
             MRUManager manager = new MRUManager();
             manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
             manager.Initialize(storage);
             Assert.IsTrue(manager.MRUItems.Count == 2);
-            Assert.IsTrue(itemsFromEvent.Count == 2);
-            Assert.IsTrue(itemsFromEvent[0].FilePath == "path1");
-            Assert.IsTrue(itemsFromEvent[0].Pinned);
+            Assert.IsTrue(listChangedWasInvoked);
+            Assert.IsTrue(manager.MRUItems[0].FilePath == "path1");
+            Assert.IsTrue(manager.MRUItems[0].Pinned);
         }
 
         [TestMethod]
         public void ShouldAddNewMRUItem()
         {
-            itemsFromEvent = new List<MRUItem>();
+            listChangedWasInvoked = false;
             InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
             MRUManager manager = new MRUManager();
             manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
             manager.Initialize(storage);
             manager.AddFile("path3");
             Assert.IsTrue(manager.MRUItems.Count == 3);
-            Assert.IsTrue(itemsFromEvent.Count == 3);
-            Assert.IsTrue(itemsFromEvent[2].FilePath == "path3");
-            Assert.IsFalse(itemsFromEvent[2].Pinned);
-            Assert.IsTrue(itemsFromEvent[2].SelectedCount == 1);
+            Assert.IsTrue(listChangedWasInvoked);
+            Assert.IsTrue(manager.MRUItems[2].FilePath == "path3");
+            Assert.IsFalse(manager.MRUItems[2].Pinned);
+            Assert.IsTrue(manager.MRUItems[2].SelectedCount == 1);
         }
 
         [TestMethod]
         public void ShouldAddExistedMRUItem()
         {
             // in this case, existed item should be updated
-            itemsFromEvent = new List<MRUItem>();
+            listChangedWasInvoked = false;
             InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
             MRUManager manager = new MRUManager();
             manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
@@ -52,62 +52,62 @@ namespace Tests
             DateTime targetDt = new DateTime();
             manager.AddFile("path1");
             Assert.IsTrue(manager.MRUItems.Count == 2);
-            Assert.IsTrue(itemsFromEvent.Count == 2);
-            Assert.IsTrue(itemsFromEvent[0].FilePath == "path1");
-            Assert.IsTrue(itemsFromEvent[0].Pinned);
-            Assert.IsTrue(itemsFromEvent[0].SelectedCount == 2);
-            Assert.IsTrue(itemsFromEvent[0].LastAccessedDate.Year == targetDt.Year);
-            Assert.IsTrue(itemsFromEvent[0].LastAccessedDate.Month == targetDt.Month);
-            Assert.IsTrue(itemsFromEvent[0].LastAccessedDate.Day == targetDt.Day);
+            Assert.IsTrue(listChangedWasInvoked);
+            Assert.IsTrue(manager.MRUItems[0].FilePath == "path1");
+            Assert.IsTrue(manager.MRUItems[0].Pinned);
+            Assert.IsTrue(manager.MRUItems[0].SelectedCount == 2);
+            Assert.IsTrue(manager.MRUItems[0].LastAccessedDate.Year == targetDt.Year);
+            Assert.IsTrue(manager.MRUItems[0].LastAccessedDate.Month == targetDt.Month);
+            Assert.IsTrue(manager.MRUItems[0].LastAccessedDate.Day == targetDt.Day);
         }
 
         [TestMethod]
         public void ShouldRemoveMRUItem()
         {
-            itemsFromEvent = new List<MRUItem>();
+            listChangedWasInvoked = false;
             InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
             MRUManager manager = new MRUManager();
             manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
             manager.Initialize(storage);
             manager.RemoveFile("path1");
             Assert.IsTrue(manager.MRUItems.Count == 1);
-            Assert.IsTrue(itemsFromEvent.Count == 1);
-            Assert.IsTrue(itemsFromEvent[0].FilePath == "path2");
-            Assert.IsFalse(itemsFromEvent[0].Pinned);
+            Assert.IsTrue(listChangedWasInvoked);
+            Assert.IsTrue(manager.MRUItems[0].FilePath == "path2");
+            Assert.IsFalse(manager.MRUItems[0].Pinned);
         }
 
         [TestMethod]
         public void ShouldClearMRUItems()
         {
-            itemsFromEvent = new List<MRUItem>();
+            listChangedWasInvoked = false;
             InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
             MRUManager manager = new MRUManager();
             manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
             manager.Initialize(storage);
             manager.ClearMRUItems();
             Assert.IsTrue(manager.MRUItems.Count == 0);
-            Assert.IsTrue(itemsFromEvent.Count == 0);
+            Assert.IsTrue(listChangedWasInvoked);
         }
 
         [TestMethod]
         public void ShouldChangePinnedStateForMRUItem()
         {
-            itemsFromEvent = new List<MRUItem>();
+            listChangedWasInvoked = false;
             InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
             MRUManager manager = new MRUManager();
             manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
             manager.Initialize(storage);
             manager.ChangePinStateForFile("path1");
             Assert.IsTrue(manager.MRUItems.Count == 2);
-            Assert.IsTrue(itemsFromEvent.Count == 2);
-            Assert.IsTrue(itemsFromEvent[0].FilePath == "path1");
-            Assert.IsFalse(itemsFromEvent[0].Pinned);
+            Assert.IsTrue(listChangedWasInvoked);
+            Assert.IsTrue(manager.MRUItems[0].FilePath == "path1");
+            Assert.IsFalse(manager.MRUItems[0].Pinned);
         }
 
         [TestMethod]
         public void ShouldHandleSelectionOfMRUItem()
         {
-            itemsFromEvent = new List<MRUItem>();
+            listChangedWasInvoked = false;
             InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
             MRUManager manager = new MRUManager();
             manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
@@ -116,22 +116,22 @@ namespace Tests
             DateTime targetDt = new DateTime();
             manager.SelectFile("path1");
             Assert.IsTrue(manager.MRUItems.Count == 2);
-            Assert.IsTrue(itemsFromEvent.Count == 2);
-            Assert.IsTrue(itemsFromEvent[0].FilePath == "path1");
-            Assert.IsTrue(itemsFromEvent[0].Pinned);
-            Assert.IsTrue(itemsFromEvent[0].SelectedCount == 2);
-            Assert.IsTrue(itemsFromEvent[0].LastAccessedDate.Year == targetDt.Year);
-            Assert.IsTrue(itemsFromEvent[0].LastAccessedDate.Month == targetDt.Month);
-            Assert.IsTrue(itemsFromEvent[0].LastAccessedDate.Day == targetDt.Day);
+            Assert.IsTrue(listChangedWasInvoked);
+            Assert.IsTrue(manager.MRUItems[0].FilePath == "path1");
+            Assert.IsTrue(manager.MRUItems[0].Pinned);
+            Assert.IsTrue(manager.MRUItems[0].SelectedCount == 2);
+            Assert.IsTrue(manager.MRUItems[0].LastAccessedDate.Year == targetDt.Year);
+            Assert.IsTrue(manager.MRUItems[0].LastAccessedDate.Month == targetDt.Month);
+            Assert.IsTrue(manager.MRUItems[0].LastAccessedDate.Day == targetDt.Day);
         }
 
 
-        private void Manager_MRUItemsListChanged(List<MRUItem> items)
+        private void Manager_MRUItemsListChanged()
         {
-            itemsFromEvent = items;
+            listChangedWasInvoked = true;
         }
 
-        private List<MRUItem> itemsFromEvent;
+        private bool listChangedWasInvoked;
 
         private List<MRUItem> CreateItems()
         {

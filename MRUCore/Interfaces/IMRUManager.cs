@@ -5,7 +5,7 @@ namespace MRUCore.Interfaces
 {
     public interface IMRUManager
     {
-        event Action<List<MRUItem>> MRUItemsListChanged;
+        event Action MRUItemsListChanged;
         List<MRUItem> MRUItems { get; }
         void Initialize(IMRUItemStorage storage);
         void AddFile(string path);
