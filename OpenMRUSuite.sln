@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRUGuiCore", "MRUGuiCore\MR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRUGuiWin", "MRUGuiWin\MRUGuiWin.csproj", "{5621E250-EC49-418C-8826-0C3878BA4ECD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsDemo", "WindowsFormsDemo\WindowsFormsDemo.csproj", "{C9EC07ED-265A-46F5-A263-1EA9D4F7820A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5621E250-EC49-418C-8826-0C3878BA4ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5621E250-EC49-418C-8826-0C3878BA4ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5621E250-EC49-418C-8826-0C3878BA4ECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9EC07ED-265A-46F5-A263-1EA9D4F7820A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9EC07ED-265A-46F5-A263-1EA9D4F7820A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9EC07ED-265A-46F5-A263-1EA9D4F7820A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9EC07ED-265A-46F5-A263-1EA9D4F7820A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
