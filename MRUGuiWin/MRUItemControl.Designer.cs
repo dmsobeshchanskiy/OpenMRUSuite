@@ -43,6 +43,7 @@
             this.pictureBoxFileIco.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxFileIco.TabIndex = 0;
             this.pictureBoxFileIco.TabStop = false;
+            this.pictureBoxFileIco.Click += new System.EventHandler(this.MRUItemControl_Click);
             // 
             // labelFileName
             // 
@@ -55,6 +56,7 @@
             this.labelFileName.Size = new System.Drawing.Size(226, 23);
             this.labelFileName.TabIndex = 1;
             this.labelFileName.Text = "File name";
+            this.labelFileName.Click += new System.EventHandler(this.MRUItemControl_Click);
             // 
             // labelPath
             // 
@@ -67,6 +69,7 @@
             this.labelPath.Size = new System.Drawing.Size(226, 16);
             this.labelPath.TabIndex = 2;
             this.labelPath.Text = "Full path to file";
+            this.labelPath.Click += new System.EventHandler(this.MRUItemControl_Click);
             // 
             // MRUItemControl
             // 
