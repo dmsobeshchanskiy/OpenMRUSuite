@@ -24,7 +24,7 @@ namespace Tests.GuiLogicTests
 
         public void ShowMRUItems(List<MRUItemsContainer> containers)
         {
-            ShowedContainersCount = containers.Count;
+            ShowedContainers = containers;
             foreach (MRUItemsContainer container in containers)
             {
                 foreach(IMRUItem item in container.Items)
@@ -38,7 +38,7 @@ namespace Tests.GuiLogicTests
 
         // mock specific properties / methods
 
-        public int ShowedContainersCount { get; private set; }
+        public List<MRUItemsContainer> ShowedContainers { get; private set; }
         public bool IsActionAllowedResponse { get; set; }
 
         public void InvokeClearMRUItemsRequested ()

@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GuiLogicTests\GuiLogicTests.cs" />
     <Compile Include="GuiLogicTests\MRUItemsViewMock.cs" />
     <Compile Include="GuiLogicTests\MRUItemViewMock.cs" />
     <Compile Include="InMemoryMRUStorage.cs" />
