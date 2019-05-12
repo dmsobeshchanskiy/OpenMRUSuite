@@ -12,11 +12,7 @@ namespace Tests
         [TestMethod]
         public void ShouldReadMRUItemsOnInitialization ()
         {
-            listChangedWasInvoked = false;
-            InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
-            MRUManager manager = new MRUManager();
-            manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
-            manager.Initialize(storage);
+            Initialize();
             Assert.IsTrue(manager.MRUItems.Count == 2);
             Assert.IsTrue(listChangedWasInvoked);
             Assert.IsTrue(manager.MRUItems[0].FilePath == "path1");
@@ -26,28 +22,21 @@ namespace Tests
         [TestMethod]
         public void ShouldAddNewMRUItem()
         {
-            listChangedWasInvoked = false;
-            InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
-            MRUManager manager = new MRUManager();
-            manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
-            manager.Initialize(storage);
+            Initialize();
             manager.AddFile("path3");
             Assert.IsTrue(manager.MRUItems.Count == 3);
             Assert.IsTrue(listChangedWasInvoked);
             Assert.IsTrue(manager.MRUItems[2].FilePath == "path3");
             Assert.IsFalse(manager.MRUItems[2].Pinned);
             Assert.IsTrue(manager.MRUItems[2].SelectedCount == 1);
+            Assert.IsFalse(itemSelectedWasInvoked, "Item selected was invoked on adding");
         }
 
         [TestMethod]
         public void ShouldAddExistedMRUItem()
         {
+            Initialize();
             // in this case, existed item should be updated
-            listChangedWasInvoked = false;
-            InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
-            MRUManager manager = new MRUManager();
-            manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
-            manager.Initialize(storage);
             // TODO: can fail in certain situatioin :-)
             DateTime targetDt = new DateTime();
             manager.AddFile("path1");
@@ -59,16 +48,13 @@ namespace Tests
             Assert.IsTrue(manager.MRUItems[0].LastAccessedDate.Year == targetDt.Year);
             Assert.IsTrue(manager.MRUItems[0].LastAccessedDate.Month == targetDt.Month);
             Assert.IsTrue(manager.MRUItems[0].LastAccessedDate.Day == targetDt.Day);
+            Assert.IsFalse(itemSelectedWasInvoked, "Item selected was invoked on exsisted item adding");
         }
 
         [TestMethod]
         public void ShouldRemoveMRUItem()
         {
-            listChangedWasInvoked = false;
-            InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
-            MRUManager manager = new MRUManager();
-            manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
-            manager.Initialize(storage);
+            Initialize();
             manager.RemoveFile("path1");
             Assert.IsTrue(manager.MRUItems.Count == 1);
             Assert.IsTrue(listChangedWasInvoked);
@@ -79,11 +65,7 @@ namespace Tests
         [TestMethod]
         public void ShouldClearMRUItems()
         {
-            listChangedWasInvoked = false;
-            InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
-            MRUManager manager = new MRUManager();
-            manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
-            manager.Initialize(storage);
+            Initialize();
             manager.ClearMRUItems();
             Assert.IsTrue(manager.MRUItems.Count == 0);
             Assert.IsTrue(listChangedWasInvoked);
@@ -92,11 +74,7 @@ namespace Tests
         [TestMethod]
         public void ShouldChangePinnedStateForMRUItem()
         {
-            listChangedWasInvoked = false;
-            InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
-            MRUManager manager = new MRUManager();
-            manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
-            manager.Initialize(storage);
+            Initialize();
             manager.ChangePinStateForFile("path1");
             Assert.IsTrue(manager.MRUItems.Count == 2);
             Assert.IsTrue(listChangedWasInvoked);
@@ -107,11 +85,7 @@ namespace Tests
         [TestMethod]
         public void ShouldHandleSelectionOfMRUItem()
         {
-            listChangedWasInvoked = false;
-            InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
-            MRUManager manager = new MRUManager();
-            manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
-            manager.Initialize(storage);
+            Initialize();
             // TODO: can fail in certain situatioin :-)
             DateTime targetDt = new DateTime();
             manager.SelectFile("path1");
@@ -123,15 +97,34 @@ namespace Tests
             Assert.IsTrue(manager.MRUItems[0].LastAccessedDate.Year == targetDt.Year);
             Assert.IsTrue(manager.MRUItems[0].LastAccessedDate.Month == targetDt.Month);
             Assert.IsTrue(manager.MRUItems[0].LastAccessedDate.Day == targetDt.Day);
+            Assert.IsTrue(itemSelectedWasInvoked, "Item selected was not invoked on selection");
         }
 
 
+        private MRUManager manager;
+
+        private void Initialize()
+        {
+            listChangedWasInvoked = false;
+            itemSelectedWasInvoked = false;
+            InMemoryMRUStorage storage = new InMemoryMRUStorage(CreateItems());
+            manager = new MRUManager();
+            manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
+            manager.MRUItemSelected += Manager_MRUItemSelected;
+            manager.Initialize(storage);
+        }
+
+        private void Manager_MRUItemSelected(string obj)
+        {
+            itemSelectedWasInvoked = true;
+        }
         private void Manager_MRUItemsListChanged()
         {
             listChangedWasInvoked = true;
         }
 
         private bool listChangedWasInvoked;
+        private bool itemSelectedWasInvoked;
 
         private List<MRUItem> CreateItems()
         {

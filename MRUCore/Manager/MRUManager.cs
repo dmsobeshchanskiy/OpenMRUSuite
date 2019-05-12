@@ -10,6 +10,7 @@ namespace MRUCore.Manager
         public List<MRUItem> MRUItems { get; private set; }
 
         public event Action MRUItemsListChanged;
+        public event Action<string> MRUItemSelected;
 
         public void AddFile(string path)
         {
@@ -28,18 +29,15 @@ namespace MRUCore.Manager
             }
             else
             {
-                SelectFile(path);
+                PerformSelectItem(path);
             }
         }
 
         public void SelectFile(string path)
         {
-            MRUItem existedItem = MRUItems.FirstOrDefault(item => item.FilePath == path);
-            if (existedItem != null)
+            if (PerformSelectItem(path))
             {
-                existedItem.SelectedCount++;
-                existedItem.LastAccessedDate = new DateTime();
-                UpdateMRUItems();
+                MRUItemSelected?.Invoke(path);
             }
         }
 
@@ -76,6 +74,20 @@ namespace MRUCore.Manager
         }
 
         private IMRUItemStorage storage;
+
+        private bool PerformSelectItem (string path)
+        {
+            bool response = false;
+            MRUItem existedItem = MRUItems.FirstOrDefault(item => item.FilePath == path);
+            if (existedItem != null)
+            {
+                existedItem.SelectedCount++;
+                existedItem.LastAccessedDate = new DateTime();
+                UpdateMRUItems();
+                response = true;
+            }
+            return response;
+        }
 
         private void UpdateMRUItems ()
         {

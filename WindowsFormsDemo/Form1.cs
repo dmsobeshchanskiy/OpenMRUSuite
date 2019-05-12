@@ -2,13 +2,6 @@
 using MRUCore.Storage;
 using MRUGuiCore;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsDemo
@@ -22,7 +15,13 @@ namespace WindowsFormsDemo
             MRUItemFileStorage storage = new MRUItemFileStorage("demo_mru_storage.xml");
             manager = new MRUManager();
             manager.Initialize(storage);
+            manager.MRUItemSelected += Manager_MRUItemSelected;
             mruItemsControl1.Initialize(manager, new MRUGuiLocalization());
+        }
+
+        private void Manager_MRUItemSelected(string path)
+        {
+            MessageBox.Show("Select file from MRU: " + path);
         }
 
         private void ButtonOpen_Click(object sender, EventArgs e)
