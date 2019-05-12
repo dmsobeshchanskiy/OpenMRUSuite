@@ -23,6 +23,7 @@ namespace MRUGuiWin
         public void ShowMRUItems(List<MRUItemsContainer> containers)
         {
             ItemViews = new List<IMRUItemView>();
+            panelItems.Controls.Clear();
             int currentTopPosition = 0;
 
             foreach(MRUItemsContainer container in containers)
@@ -34,7 +35,7 @@ namespace MRUGuiWin
                     Top = currentTopPosition
                 };
                 panelItems.Controls.Add(groupCaption);
-                currentTopPosition += TextRenderer.MeasureText(groupCaption.Text, groupCaption.Font).Height;
+                currentTopPosition += TextRenderer.MeasureText(groupCaption.Text, groupCaption.Font).Height + 3;
                 foreach (IMRUItem item in container.Items)
                 {
                     MRUItemControl mruControl = new MRUItemControl();

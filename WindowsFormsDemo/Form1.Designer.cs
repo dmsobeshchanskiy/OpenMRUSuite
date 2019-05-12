@@ -43,7 +43,7 @@
             this.mruItemsControl1.Location = new System.Drawing.Point(0, 0);
             this.mruItemsControl1.MinimumSize = new System.Drawing.Size(160, 200);
             this.mruItemsControl1.Name = "mruItemsControl1";
-            this.mruItemsControl1.Size = new System.Drawing.Size(198, 448);
+            this.mruItemsControl1.Size = new System.Drawing.Size(201, 448);
             this.mruItemsControl1.TabIndex = 0;
             // 
             // splitContainer1
@@ -61,25 +61,25 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.buttonOpen);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 450);
-            this.splitContainer1.SplitterDistance = 200;
+            this.splitContainer1.Size = new System.Drawing.Size(423, 450);
+            this.splitContainer1.SplitterDistance = 203;
             this.splitContainer1.TabIndex = 1;
             // 
             // buttonOpen
             // 
-            this.buttonOpen.Location = new System.Drawing.Point(496, 11);
+            this.buttonOpen.Location = new System.Drawing.Point(9, 11);
             this.buttonOpen.Name = "buttonOpen";
             this.buttonOpen.Size = new System.Drawing.Size(87, 23);
             this.buttonOpen.TabIndex = 0;
             this.buttonOpen.Text = "Open File";
             this.buttonOpen.UseVisualStyleBackColor = true;
-            this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
+            this.buttonOpen.Click += new System.EventHandler(this.ButtonOpen_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(423, 450);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
             this.Text = "Form1";

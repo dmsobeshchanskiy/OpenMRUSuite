@@ -25,7 +25,7 @@ namespace WindowsFormsDemo
             mruItemsControl1.Initialize(manager, new MRUGuiLocalization());
         }
 
-        private void buttonOpen_Click(object sender, EventArgs e)
+        private void ButtonOpen_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)
