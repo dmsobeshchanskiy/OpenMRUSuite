@@ -25,6 +25,7 @@ namespace Tests.GuiLogicTests
         public void ShowMRUItems(List<MRUItemsContainer> containers)
         {
             ShowedContainers = containers;
+            ItemViews = new List<IMRUItemView>();
             foreach (MRUItemsContainer container in containers)
             {
                 foreach(IMRUItem item in container.Items)

@@ -25,12 +25,6 @@ namespace MRUGuiCore
         {
             manager.MRUItemsListChanged += Manager_MRUItemsListChanged;
             view.ClearMRUItemsRequested += View_ClearMRUItemsRequested;
-            foreach (IMRUItemView itemView in view.ItemViews)
-            {
-                itemView.DeleteItemRequested += ItemView_DeleteItemRequested;
-                itemView.ItemSelected += ItemView_ItemSelected;
-                itemView.PinItemRequested += ItemView_PinItemRequested;
-            }
             ShowItemsOnView();
         }
 
@@ -74,7 +68,7 @@ namespace MRUGuiCore
                 ContainerCaption = localization.PinnedItemsLabel,
                 Items = pinnedItems
             };
-
+                
             IEnumerable<IMRUItem> otherItems = manager.MRUItems.Where(item => !item.Pinned);
             MRUItemsContainer otherContainer = new MRUItemsContainer
             {
@@ -84,8 +78,16 @@ namespace MRUGuiCore
 
             containers.Add(pinnedContainer);
             containers.Add(otherContainer);
+            containers = containers.Where(c => c.Items.Count() > 0).ToList();
 
             view.ShowMRUItems(containers);
+
+            foreach (IMRUItemView itemView in view.ItemViews)
+            {
+                itemView.DeleteItemRequested += ItemView_DeleteItemRequested;
+                itemView.ItemSelected += ItemView_ItemSelected;
+                itemView.PinItemRequested += ItemView_PinItemRequested;
+            }
         }
     }
 }

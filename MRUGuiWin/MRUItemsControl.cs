@@ -16,8 +16,8 @@ namespace MRUGuiWin
 
         public void Initialize(IMRUManager manager, MRUGuiLocalization localization)
         {
-            this.manager = manager;
             this.localization = localization;
+            MRUGuiLogic logic = new MRUGuiLogic(this, manager, localization);
         }
 
         public void ShowMRUItems(List<MRUItemsContainer> containers)
@@ -61,7 +61,6 @@ namespace MRUGuiWin
         }
 
         private MRUGuiLocalization localization;
-        private IMRUManager manager;
 
         private void LinkLabelClearAll_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

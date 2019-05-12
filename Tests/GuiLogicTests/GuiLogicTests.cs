@@ -15,8 +15,8 @@ namespace Tests.GuiLogicTests
         public void ShouldDisplayMRUContainersOnControlInitialization ()
         {
             Initialize();
-            Assert.IsTrue(viewMock.ShowedContainers.Count == 2);
-            Assert.IsTrue(viewMock.ItemViews.Count == 2);
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 2, "Wrong containers count");
+            Assert.IsTrue(viewMock.ItemViews.Count == 2, "Wrong items count");
         }
 
         [TestMethod]
@@ -27,8 +27,8 @@ namespace Tests.GuiLogicTests
             MRUItemViewMock itemView = GetMockItemViewForPath("path1");
             itemView.InvokePinItemRequested();
 
-            Assert.IsTrue(viewMock.ShowedContainers.Count == 1);
-            Assert.IsTrue(viewMock.ItemViews.Count == 2);
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 1, "Wrong containers count");
+            Assert.IsTrue(viewMock.ItemViews.Count == 2, "Wrong items count");
         }
 
         [TestMethod]
@@ -40,7 +40,7 @@ namespace Tests.GuiLogicTests
             itemView.InvokeItemSelected();
 
             MRUItem item = manager.MRUItems.FirstOrDefault(m => m.FilePath == "path1");
-            Assert.IsTrue(item.SelectedCount == 2);
+            Assert.IsTrue(item.SelectedCount == 2, "Wrong 'selected count' attribute");
         }
 
         [TestMethod]
@@ -52,8 +52,8 @@ namespace Tests.GuiLogicTests
             MRUItemViewMock itemView = GetMockItemViewForPath("path1");
             itemView.InvokeDeleteItemRequested();
 
-            Assert.IsTrue(viewMock.ShowedContainers.Count == 2);
-            Assert.IsTrue(viewMock.ItemViews.Count == 2);
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 2, "Wrong containers count");
+            Assert.IsTrue(viewMock.ItemViews.Count == 2, "Wrong items count");
         }
 
         [TestMethod]
@@ -65,8 +65,8 @@ namespace Tests.GuiLogicTests
             MRUItemViewMock itemView = GetMockItemViewForPath("path1");
             itemView.InvokeDeleteItemRequested();
 
-            Assert.IsTrue(viewMock.ShowedContainers.Count == 1);
-            Assert.IsTrue(viewMock.ItemViews.Count == 1);
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 1, "Wrong containers count");
+            Assert.IsTrue(viewMock.ItemViews.Count == 1, "Wrong items count");
         }
 
         [TestMethod]
@@ -76,8 +76,8 @@ namespace Tests.GuiLogicTests
             viewMock.IsActionAllowedResponse = false;
             viewMock.InvokeClearMRUItemsRequested();
 
-            Assert.IsTrue(viewMock.ShowedContainers.Count == 2);
-            Assert.IsTrue(viewMock.ItemViews.Count == 2);
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 2, "Wrong containers count");
+            Assert.IsTrue(viewMock.ItemViews.Count == 2, "Wrong items count");
         }
 
         [TestMethod]
@@ -87,8 +87,8 @@ namespace Tests.GuiLogicTests
             viewMock.IsActionAllowedResponse = true;
             viewMock.InvokeClearMRUItemsRequested();
 
-            Assert.IsTrue(viewMock.ShowedContainers.Count == 0);
-            Assert.IsTrue(viewMock.ItemViews.Count == 0);
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 0, "Wrong containers count");
+            Assert.IsTrue(viewMock.ItemViews.Count == 0, "Wrong items count");
         }
 
         [TestMethod]
@@ -99,25 +99,25 @@ namespace Tests.GuiLogicTests
 
             // add new item
             manager.AddFile("path3");
-            Assert.IsTrue(viewMock.ShowedContainers.Count == 2);
-            Assert.IsTrue(viewMock.ItemViews.Count == 3);
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 2, "Wrong containers count on adding");
+            Assert.IsTrue(viewMock.ItemViews.Count == 3, "Wrong items count on adding");
 
             // pin it
             MRUItemViewMock itemView = GetMockItemViewForPath("path3");
             itemView.InvokePinItemRequested();
             // container with pinned items always goes first
-            Assert.IsTrue(viewMock.ShowedContainers[0].Items.Count() == 2);
-            Assert.IsTrue(viewMock.ItemViews.Count == 3);
+            Assert.IsTrue(viewMock.ShowedContainers[0].Items.Count() == 2, "Wrong items count in pinned group");
+            Assert.IsTrue(viewMock.ItemViews.Count == 3, "Wrong items count on pin");
 
             // select it
             itemView.InvokeItemSelected();
             MRUItem mruItem = manager.MRUItems.FirstOrDefault(m => m.FilePath == "path3");
-            Assert.IsTrue(mruItem.SelectedCount == 2);
+            Assert.IsTrue(mruItem.SelectedCount == 2, "Wrong 'selected count' attribute");
 
             // delete it
             itemView.InvokeDeleteItemRequested();
-            Assert.IsTrue(viewMock.ShowedContainers.Count == 2);
-            Assert.IsTrue(viewMock.ItemViews.Count == 2);
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 2, "Wrong containers count on deletion");
+            Assert.IsTrue(viewMock.ItemViews.Count == 2, "Wrong items count on deletion");
         }
 
 
