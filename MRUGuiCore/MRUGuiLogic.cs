@@ -62,14 +62,16 @@ namespace MRUGuiCore
         {
             List<MRUItemsContainer> containers = new List<MRUItemsContainer>();
 
-            IEnumerable<IMRUItem> pinnedItems = manager.MRUItems.Where(item => item.Pinned);
+            IEnumerable<IMRUItem> pinnedItems = manager.MRUItems.Where(item => item.Pinned)
+                                                                .OrderByDescending(item => item.LastAccessedDate);
             MRUItemsContainer pinnedContainer = new MRUItemsContainer
             {
                 ContainerCaption = localization.PinnedItemsLabel,
                 Items = pinnedItems
             };
                 
-            IEnumerable<IMRUItem> otherItems = manager.MRUItems.Where(item => !item.Pinned);
+            IEnumerable<IMRUItem> otherItems = manager.MRUItems.Where(item => !item.Pinned)
+                                                               .OrderByDescending(item => item.LastAccessedDate);
             MRUItemsContainer otherContainer = new MRUItemsContainer
             {
                 ContainerCaption = localization.OtherItemsLabel,

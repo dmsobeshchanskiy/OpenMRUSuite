@@ -20,7 +20,7 @@ namespace MRUCore.Manager
                 MRUItem item = new MRUItem()
                 {
                     FilePath = path,
-                    LastAccessedDate = new DateTime(),
+                    LastAccessedDate = DateTime.Now,
                     Pinned = false,
                     SelectedCount = 1
                 };
@@ -82,7 +82,7 @@ namespace MRUCore.Manager
             if (existedItem != null)
             {
                 existedItem.SelectedCount++;
-                existedItem.LastAccessedDate = new DateTime();
+                existedItem.LastAccessedDate = DateTime.Now;
                 UpdateMRUItems();
                 response = true;
             }

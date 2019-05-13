@@ -38,7 +38,7 @@ namespace Tests
             Initialize();
             // in this case, existed item should be updated
             // TODO: can fail in certain situatioin :-)
-            DateTime targetDt = new DateTime();
+            DateTime targetDt = DateTime.Now;
             manager.AddFile("path1");
             Assert.IsTrue(manager.MRUItems.Count == 2);
             Assert.IsTrue(listChangedWasInvoked);
@@ -87,7 +87,7 @@ namespace Tests
         {
             Initialize();
             // TODO: can fail in certain situatioin :-)
-            DateTime targetDt = new DateTime();
+            DateTime targetDt = DateTime.Now;
             manager.SelectFile("path1");
             Assert.IsTrue(manager.MRUItems.Count == 2);
             Assert.IsTrue(listChangedWasInvoked);
