@@ -32,7 +32,8 @@ namespace MRUGuiWin
                 {
                     Text = container.ContainerCaption,
                     Left = 1,
-                    Top = currentTopPosition
+                    Top = currentTopPosition,
+                    AutoSize = true
                 };
                 panelItems.Controls.Add(groupCaption);
                 currentTopPosition += TextRenderer.MeasureText(groupCaption.Text, groupCaption.Font).Height + 3;

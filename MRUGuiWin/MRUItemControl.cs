@@ -33,5 +33,15 @@ namespace MRUGuiWin
         {
             ItemSelected?.Invoke(item.FilePath);
         }
+
+        private void MRUItemControl_MouseEnter(object sender, EventArgs e)
+        {
+            this.BackColor = System.Drawing.SystemColors.ControlDark;
+        }
+
+        private void MRUItemControl_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = System.Drawing.SystemColors.Control;
+        }
     }
 }

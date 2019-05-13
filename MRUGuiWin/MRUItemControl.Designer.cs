@@ -44,6 +44,8 @@
             this.pictureBoxFileIco.TabIndex = 0;
             this.pictureBoxFileIco.TabStop = false;
             this.pictureBoxFileIco.Click += new System.EventHandler(this.MRUItemControl_Click);
+            this.pictureBoxFileIco.MouseEnter += new System.EventHandler(this.MRUItemControl_MouseEnter);
+            this.pictureBoxFileIco.MouseLeave += new System.EventHandler(this.MRUItemControl_MouseLeave);
             // 
             // labelFileName
             // 
@@ -57,6 +59,8 @@
             this.labelFileName.TabIndex = 1;
             this.labelFileName.Text = "File name";
             this.labelFileName.Click += new System.EventHandler(this.MRUItemControl_Click);
+            this.labelFileName.MouseEnter += new System.EventHandler(this.MRUItemControl_MouseEnter);
+            this.labelFileName.MouseLeave += new System.EventHandler(this.MRUItemControl_MouseLeave);
             // 
             // labelPath
             // 
@@ -70,17 +74,22 @@
             this.labelPath.TabIndex = 2;
             this.labelPath.Text = "Full path to file";
             this.labelPath.Click += new System.EventHandler(this.MRUItemControl_Click);
+            this.labelPath.MouseEnter += new System.EventHandler(this.MRUItemControl_MouseEnter);
+            this.labelPath.MouseLeave += new System.EventHandler(this.MRUItemControl_MouseLeave);
             // 
             // MRUItemControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.labelPath);
             this.Controls.Add(this.labelFileName);
             this.Controls.Add(this.pictureBoxFileIco);
             this.Name = "MRUItemControl";
             this.Size = new System.Drawing.Size(284, 50);
             this.Click += new System.EventHandler(this.MRUItemControl_Click);
+            this.MouseEnter += new System.EventHandler(this.MRUItemControl_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.MRUItemControl_MouseLeave);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFileIco)).EndInit();
             this.ResumeLayout(false);
 
