@@ -12,8 +12,6 @@ namespace MRUGuiWin
         public event Action<string> DeleteItemRequested;
         public event Action<string> ItemSelected;
 
-        
-
         public void Initialize(IMRUItem item)
         {
             this.item = item;
@@ -34,14 +32,37 @@ namespace MRUGuiWin
             ItemSelected?.Invoke(item.FilePath);
         }
 
+        private void pictureBoxRemove_Click(object sender, EventArgs e)
+        {
+            DeleteItemRequested?.Invoke(item.FilePath);
+        }
+
+        private void pictureBoxPin_Click(object sender, EventArgs e)
+        {
+            PinItemRequested?.Invoke(item.FilePath);
+        }
+
+
         private void MRUItemControl_MouseEnter(object sender, EventArgs e)
         {
-            this.BackColor = System.Drawing.SystemColors.ControlDark;
+            ApplySelection();
         }
 
         private void MRUItemControl_MouseLeave(object sender, EventArgs e)
         {
+            DiscardSelection();
+        }
+
+        private void ApplySelection()
+        {
+            this.BackColor = System.Drawing.SystemColors.ControlDark;
+            panelActions.Visible = true;
+        }
+
+        private void DiscardSelection()
+        {
             this.BackColor = System.Drawing.SystemColors.Control;
+            //panelActions.Visible = false;
         }
     }
 }

@@ -88,5 +88,10 @@
   <ItemGroup>
     <None Include="Resources\icons8-file-64.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="MediaLocations.txt" />
+    <None Include="Resources\iconfinder_pin-blue_43904.png" />
+    <None Include="Resources\iconfinder_Delete_27842.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

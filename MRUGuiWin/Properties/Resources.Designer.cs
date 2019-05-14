@@ -63,6 +63,26 @@ namespace MRUGuiWin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_Delete_27842 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_Delete_27842", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_pin_blue_43904 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_pin-blue_43904", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_file_64 {
             get {
                 object obj = ResourceManager.GetObject("icons8-file-64", resourceCulture);
