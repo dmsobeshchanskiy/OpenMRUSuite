@@ -61,8 +61,11 @@ namespace MRUGuiWin
 
         private void DiscardSelection()
         {
-            this.BackColor = System.Drawing.SystemColors.Control;
-            //panelActions.Visible = false;
+            if (!this.ClientRectangle.Contains(this.PointToClient(Cursor.Position)))
+            {
+                this.BackColor = System.Drawing.SystemColors.Control;
+                panelActions.Visible = false;
+            }
         }
     }
 }

@@ -46,13 +46,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFileName.AutoEllipsis = true;
             this.labelFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelFileName.Location = new System.Drawing.Point(54, 2);
+            this.labelFileName.Location = new System.Drawing.Point(54, 4);
             this.labelFileName.Name = "labelFileName";
             this.labelFileName.Size = new System.Drawing.Size(226, 23);
             this.labelFileName.TabIndex = 1;
             this.labelFileName.Text = "File name";
             this.labelFileName.Click += new System.EventHandler(this.MRUItemControl_Click);
-            this.labelFileName.MouseEnter += new System.EventHandler(this.MRUItemControl_MouseEnter);
             this.labelFileName.MouseLeave += new System.EventHandler(this.MRUItemControl_MouseLeave);
             // 
             // labelPath
@@ -61,13 +60,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelPath.AutoEllipsis = true;
             this.labelPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPath.Location = new System.Drawing.Point(55, 30);
+            this.labelPath.Location = new System.Drawing.Point(55, 32);
             this.labelPath.Name = "labelPath";
             this.labelPath.Size = new System.Drawing.Size(226, 16);
             this.labelPath.TabIndex = 2;
             this.labelPath.Text = "Full path to file";
             this.labelPath.Click += new System.EventHandler(this.MRUItemControl_Click);
-            this.labelPath.MouseEnter += new System.EventHandler(this.MRUItemControl_MouseEnter);
             this.labelPath.MouseLeave += new System.EventHandler(this.MRUItemControl_MouseLeave);
             // 
             // panelActions
@@ -75,11 +73,12 @@
             this.panelActions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelActions.Controls.Add(this.pictureBoxPin);
             this.panelActions.Controls.Add(this.pictureBoxRemove);
-            this.panelActions.Location = new System.Drawing.Point(238, 0);
+            this.panelActions.Location = new System.Drawing.Point(235, 3);
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(46, 20);
             this.panelActions.TabIndex = 3;
             this.panelActions.Visible = false;
+            this.panelActions.MouseLeave += new System.EventHandler(this.MRUItemControl_MouseLeave);
             // 
             // pictureBoxPin
             // 
@@ -104,14 +103,13 @@
             // pictureBoxFileIco
             // 
             this.pictureBoxFileIco.Image = global::MRUGuiWin.Properties.Resources.icons8_file_64;
-            this.pictureBoxFileIco.Location = new System.Drawing.Point(1, 1);
+            this.pictureBoxFileIco.Location = new System.Drawing.Point(1, 3);
             this.pictureBoxFileIco.Name = "pictureBoxFileIco";
             this.pictureBoxFileIco.Size = new System.Drawing.Size(48, 48);
             this.pictureBoxFileIco.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxFileIco.TabIndex = 0;
             this.pictureBoxFileIco.TabStop = false;
             this.pictureBoxFileIco.Click += new System.EventHandler(this.MRUItemControl_Click);
-            this.pictureBoxFileIco.MouseEnter += new System.EventHandler(this.MRUItemControl_MouseEnter);
             this.pictureBoxFileIco.MouseLeave += new System.EventHandler(this.MRUItemControl_MouseLeave);
             // 
             // MRUItemControl
@@ -124,7 +122,7 @@
             this.Controls.Add(this.labelFileName);
             this.Controls.Add(this.pictureBoxFileIco);
             this.Name = "MRUItemControl";
-            this.Size = new System.Drawing.Size(284, 50);
+            this.Size = new System.Drawing.Size(284, 54);
             this.Click += new System.EventHandler(this.MRUItemControl_Click);
             this.MouseEnter += new System.EventHandler(this.MRUItemControl_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.MRUItemControl_MouseLeave);
