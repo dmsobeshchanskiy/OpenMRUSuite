@@ -31,7 +31,7 @@ namespace Tests.GuiLogicTests
                 foreach(IMRUItem item in container.Items)
                 {
                     MRUItemViewMock view = new MRUItemViewMock();
-                    view.Initialize(item);
+                    view.Initialize(item, new MRUGuiItemLocalization());
                     ItemViews.Add(view);
                 }
             }

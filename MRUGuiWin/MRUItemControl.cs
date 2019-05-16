@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MRUGuiCore.ViewInterfaces;
 using MRUCore.Interfaces;
 using System.IO;
+using MRUGuiCore;
 
 namespace MRUGuiWin
 {
@@ -12,12 +13,15 @@ namespace MRUGuiWin
         public event Action<string> DeleteItemRequested;
         public event Action<string> ItemSelected;
 
-        public void Initialize(IMRUItem item)
+        public void Initialize(IMRUItem item, MRUGuiItemLocalization localization)
         {
             this.item = item;
             FileInfo fileInfo = new FileInfo(item.FilePath);
             labelFileName.Text = fileInfo.Name;
             labelPath.Text = fileInfo.DirectoryName;
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(this.pictureBoxRemove, localization.DeleteItemLabel);
+            tt.SetToolTip(this.pictureBoxPin, localization.PinItemLabel);
         }
 
         public MRUItemControl()
@@ -67,5 +71,6 @@ namespace MRUGuiWin
                 panelActions.Visible = false;
             }
         }
+
     }
 }

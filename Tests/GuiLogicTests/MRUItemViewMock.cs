@@ -1,4 +1,5 @@
 ﻿using MRUCore.Interfaces;
+using MRUGuiCore;
 using MRUGuiCore.ViewInterfaces;
 using System;
 
@@ -10,7 +11,7 @@ namespace Tests.GuiLogicTests
         public event Action<string> DeleteItemRequested;
         public event Action<string> ItemSelected;
 
-        public void Initialize(IMRUItem item)
+        public void Initialize(IMRUItem item, MRUGuiItemLocalization localization)
         {
             this.item = item;
         }

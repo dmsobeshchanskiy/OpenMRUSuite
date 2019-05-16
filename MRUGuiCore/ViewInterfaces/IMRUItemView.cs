@@ -8,6 +8,6 @@ namespace MRUGuiCore.ViewInterfaces
         event Action<string> PinItemRequested;
         event Action<string> DeleteItemRequested;
         event Action<string> ItemSelected;
-        void Initialize(IMRUItem item);
+        void Initialize(IMRUItem item, MRUGuiItemLocalization localization);
     }
 }
