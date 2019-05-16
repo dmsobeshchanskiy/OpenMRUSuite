@@ -24,9 +24,39 @@ namespace MRUGuiWin
         {
             ItemViews = new List<IMRUItemView>();
             panelItems.Controls.Clear();
-            int currentTopPosition = 0;
+            linkLabelClearAll.Visible = containers.Count > 0;
+            if (containers.Count > 0)
+            {
+                DisplayContainers(containers);
+            } else
+            {
+                Label noItemsCaption = new Label
+                {
+                    Text = localization.NoRecentItemsLabel,
+                    Left = 1,
+                    Top = 1,
+                    AutoSize = true
+                };
+                panelItems.Controls.Add(noItemsCaption);
+            }
+        }
 
-            foreach(MRUItemsContainer container in containers)
+        public bool IsActionAllowed(string actionDescription)
+        {
+            return MessageBox.Show(actionDescription, localization.ConfirmActionDialogCaption, MessageBoxButtons.YesNo) == DialogResult.Yes;
+        }
+
+        public MRUItemsControl()
+        {
+            InitializeComponent();
+        }
+
+        private MRUGuiLocalization localization;
+
+        private void DisplayContainers(List<MRUItemsContainer> containers)
+        {
+            int currentTopPosition = 0;
+            foreach (MRUItemsContainer container in containers)
             {
                 Label groupCaption = new Label
                 {
@@ -51,18 +81,6 @@ namespace MRUGuiWin
                 }
             }
         }
-
-        public bool IsActionAllowed(string actionDescription)
-        {
-            return MessageBox.Show(actionDescription, localization.ConfirmActionDialogCaption, MessageBoxButtons.YesNo) == DialogResult.Yes;
-        }
-
-        public MRUItemsControl()
-        {
-            InitializeComponent();
-        }
-
-        private MRUGuiLocalization localization;
 
         private void LinkLabelClearAll_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

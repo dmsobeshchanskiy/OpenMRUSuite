@@ -23,6 +23,11 @@
         /// </summary>
         public string OtherItemsLabel { get; set; }
         /// <summary>
+        /// Label to show if there are no MRU items
+        /// Default value is [No recent items]
+        /// </summary>
+        public string NoRecentItemsLabel { get; set; }
+        /// <summary>
         /// Caption for action confirmation dialog
         /// Default value is [Confirm action]
         /// </summary>
@@ -42,6 +47,7 @@
             ClearAllLabel = "Clear list";
             PinnedItemsLabel = "Pinned items";
             OtherItemsLabel = "Other items";
+            NoRecentItemsLabel = "No recent items";
             ConfirmActionDialogCaption = "Confirm action";
             ItemLocalization = new MRUGuiItemLocalization();
             Messages = new MRUMessages();
