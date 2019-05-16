@@ -56,6 +56,11 @@
         /// </summary>
         public string PinItemLabel { get; set; }
         /// <summary>
+        /// Label for 'unpin' functionality
+        /// Default value is [Unpin item]
+        /// </summary>
+        public string UnpinItemLabel { get; set; }
+        /// <summary>
         /// Label for 'delete item' functionality
         /// Default value is [Delete item from list]
         /// </summary>
@@ -64,6 +69,7 @@
         public MRUGuiItemLocalization ()
         {
             PinItemLabel = "Pin item";
+            UnpinItemLabel = "Unpin item";
             DeleteItemLabel = "Delete item from list";
         }
     }

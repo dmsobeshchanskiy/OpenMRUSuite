@@ -21,7 +21,14 @@ namespace MRUGuiWin
             labelPath.Text = fileInfo.DirectoryName;
             ToolTip tt = new ToolTip();
             tt.SetToolTip(this.pictureBoxRemove, localization.DeleteItemLabel);
-            tt.SetToolTip(this.pictureBoxPin, localization.PinItemLabel);
+            if (item.Pinned)
+            {
+                tt.SetToolTip(this.pictureBoxPin, localization.UnpinItemLabel);
+            } else
+            {
+                tt.SetToolTip(this.pictureBoxPin, localization.PinItemLabel);
+            }
+            
         }
 
         public MRUItemControl()
