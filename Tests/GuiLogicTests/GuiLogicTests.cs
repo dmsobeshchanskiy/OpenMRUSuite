@@ -28,6 +28,7 @@ namespace Tests.GuiLogicTests
             itemView.InvokePinItemRequested();
 
             Assert.IsTrue(viewMock.ShowedContainers.Count == 1, "Wrong containers count");
+            Assert.IsTrue(viewMock.ShowedContainers[0].ContainerCaption == "", "Wrong container caption");
             Assert.IsTrue(viewMock.ItemViews.Count == 2, "Wrong items count");
         }
 

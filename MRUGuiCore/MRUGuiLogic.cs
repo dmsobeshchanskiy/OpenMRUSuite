@@ -81,6 +81,10 @@ namespace MRUGuiCore
             containers.Add(pinnedContainer);
             containers.Add(otherContainer);
             containers = containers.Where(c => c.Items.Count() > 0).ToList();
+            if (containers.Count() == 1)
+            {
+                containers[0].ContainerCaption = string.Empty;
+            }
 
             view.ShowMRUItems(containers);
 
