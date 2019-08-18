@@ -1,5 +1,6 @@
 ﻿using MRUCore.Interfaces;
 using System;
+using System.Drawing;
 
 namespace MRUGuiCore.ViewInterfaces
 {
@@ -9,5 +10,6 @@ namespace MRUGuiCore.ViewInterfaces
         event Action<string> DeleteItemRequested;
         event Action<string> ItemSelected;
         void Initialize(IMRUItem item, MRUGuiItemLocalization localization);
+        void Initialize(IMRUItem item, MRUGuiItemLocalization localization, Image imageForItem);
     }
 }

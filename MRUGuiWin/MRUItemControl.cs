@@ -4,6 +4,7 @@ using MRUGuiCore.ViewInterfaces;
 using MRUCore.Interfaces;
 using System.IO;
 using MRUGuiCore;
+using System.Drawing;
 
 namespace MRUGuiWin
 {
@@ -15,7 +16,13 @@ namespace MRUGuiWin
 
         public void Initialize(IMRUItem item, MRUGuiItemLocalization localization)
         {
+            this.Initialize(item, localization, Properties.Resources.icons8_file_64);
+        }
+
+        public void Initialize(IMRUItem item, MRUGuiItemLocalization localization, Image itemImage)
+        {
             this.item = item;
+            pictureBoxFileIco.Image = itemImage;
             FileInfo fileInfo = new FileInfo(item.FilePath);
             labelFileName.Text = fileInfo.Name;
             labelPath.Text = fileInfo.DirectoryName;
@@ -24,11 +31,12 @@ namespace MRUGuiWin
             if (item.Pinned)
             {
                 tt.SetToolTip(this.pictureBoxPin, localization.UnpinItemLabel);
-            } else
+            }
+            else
             {
                 tt.SetToolTip(this.pictureBoxPin, localization.PinItemLabel);
             }
-            
+
         }
 
         public MRUItemControl()
@@ -43,12 +51,12 @@ namespace MRUGuiWin
             ItemSelected?.Invoke(item.FilePath);
         }
 
-        private void pictureBoxRemove_Click(object sender, EventArgs e)
+        private void PictureBoxRemove_Click(object sender, EventArgs e)
         {
             DeleteItemRequested?.Invoke(item.FilePath);
         }
 
-        private void pictureBoxPin_Click(object sender, EventArgs e)
+        private void PictureBoxPin_Click(object sender, EventArgs e)
         {
             PinItemRequested?.Invoke(item.FilePath);
         }

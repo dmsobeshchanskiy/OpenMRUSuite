@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using MRUGuiCore.ViewInterfaces;
 using MRUCore.Interfaces;
 using MRUGuiCore;
+using System.Drawing;
 
 namespace MRUGuiWin
 {
@@ -16,7 +17,13 @@ namespace MRUGuiWin
 
         public void Initialize(IMRUManager manager, MRUGuiLocalization localization)
         {
+            Initialize(manager, localization, Properties.Resources.icons8_file_64);
+        }
+
+        public void Initialize(IMRUManager manager, MRUGuiLocalization localization, Image imageForItem)
+        {
             this.localization = localization;
+            this.imageForItem = imageForItem;
             MRUGuiLogic logic = new MRUGuiLogic(this, manager, localization);
         }
 
@@ -52,6 +59,7 @@ namespace MRUGuiWin
         }
 
         private MRUGuiLocalization localization;
+        private Image imageForItem;
 
         private void DisplayContainers(List<MRUItemsContainer> containers)
         {

@@ -88,7 +88,7 @@
             this.pictureBoxPin.Size = new System.Drawing.Size(17, 17);
             this.pictureBoxPin.TabIndex = 1;
             this.pictureBoxPin.TabStop = false;
-            this.pictureBoxPin.Click += new System.EventHandler(this.pictureBoxPin_Click);
+            this.pictureBoxPin.Click += new System.EventHandler(this.PictureBoxPin_Click);
             // 
             // pictureBoxRemove
             // 
@@ -98,7 +98,7 @@
             this.pictureBoxRemove.Size = new System.Drawing.Size(17, 17);
             this.pictureBoxRemove.TabIndex = 0;
             this.pictureBoxRemove.TabStop = false;
-            this.pictureBoxRemove.Click += new System.EventHandler(this.pictureBoxRemove_Click);
+            this.pictureBoxRemove.Click += new System.EventHandler(this.PictureBoxRemove_Click);
             // 
             // pictureBoxFileIco
             // 

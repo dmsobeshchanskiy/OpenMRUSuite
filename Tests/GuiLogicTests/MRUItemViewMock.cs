@@ -2,6 +2,7 @@
 using MRUGuiCore;
 using MRUGuiCore.ViewInterfaces;
 using System;
+using System.Drawing;
 
 namespace Tests.GuiLogicTests
 {
@@ -12,6 +13,11 @@ namespace Tests.GuiLogicTests
         public event Action<string> ItemSelected;
 
         public void Initialize(IMRUItem item, MRUGuiItemLocalization localization)
+        {
+            Initialize(item, localization, null);
+        }
+
+        public void Initialize(IMRUItem item, MRUGuiItemLocalization localization, Image itemImage)
         {
             this.item = item;
         }
