@@ -78,7 +78,7 @@ namespace MRUGuiWin
                 foreach (IMRUItem item in container.Items)
                 {
                     MRUItemControl mruControl = new MRUItemControl();
-                    mruControl.Initialize(item, localization.ItemLocalization);
+                    mruControl.Initialize(item, localization.ItemLocalization, imageForItem);
                     panelItems.Controls.Add(mruControl);
                     mruControl.Width = panelItems.Width - 2;
                     mruControl.Top = currentTopPosition;
