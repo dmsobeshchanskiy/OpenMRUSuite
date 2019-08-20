@@ -39,6 +39,7 @@
             // 
             // mruItemsControl1
             // 
+            this.mruItemsControl1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.mruItemsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mruItemsControl1.Location = new System.Drawing.Point(0, 0);
             this.mruItemsControl1.MinimumSize = new System.Drawing.Size(160, 200);

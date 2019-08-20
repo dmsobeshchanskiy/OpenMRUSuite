@@ -36,8 +36,15 @@ namespace MRUGuiWin
             {
                 tt.SetToolTip(this.pictureBoxPin, localization.PinItemLabel);
             }
-
+            if (this.Parent != null)
+            {
+                normalColor = this.Parent.BackColor;
+            }
+            BackColor = normalColor;
         }
+
+        private Color normalColor = SystemColors.Control;
+        private Color hoveredColor = SystemColors.ControlDark;
 
         public MRUItemControl()
         {
@@ -74,7 +81,7 @@ namespace MRUGuiWin
 
         private void ApplySelection()
         {
-            this.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.BackColor = hoveredColor;
             panelActions.Visible = true;
         }
 
@@ -82,7 +89,7 @@ namespace MRUGuiWin
         {
             if (!this.ClientRectangle.Contains(this.PointToClient(Cursor.Position)))
             {
-                this.BackColor = System.Drawing.SystemColors.Control;
+                this.BackColor = normalColor;
                 panelActions.Visible = false;
             }
         }
