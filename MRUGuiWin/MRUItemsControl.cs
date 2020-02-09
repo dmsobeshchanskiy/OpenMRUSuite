@@ -24,6 +24,8 @@ namespace MRUGuiWin
         {
             this.localization = localization;
             this.imageForItem = imageForItem;
+            this.labelCaption.Text = localization.Caption;
+            this.linkLabelClearAll.Text = localization.ClearAllLabel;
             MRUGuiLogic logic = new MRUGuiLogic(this, manager, localization);
         }
 
