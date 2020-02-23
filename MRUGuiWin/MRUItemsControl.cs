@@ -26,6 +26,7 @@ namespace MRUGuiWin
             this.imageForItem = imageForItem;
             this.labelCaption.Text = localization.Caption;
             this.linkLabelClearAll.Text = localization.ClearAllLabel;
+            RepositionHeader();
             MRUGuiLogic logic = new MRUGuiLogic(this, manager, localization);
         }
 
@@ -63,6 +64,10 @@ namespace MRUGuiWin
         private MRUGuiLocalization localization;
         private Image imageForItem;
 
+        private int leftMargin = 4;
+        private int rightMargin = 4;
+        private int spaceBetween = 2;
+
         private void DisplayContainers(List<MRUItemsContainer> containers)
         {
             int currentTopPosition = 0;
@@ -95,6 +100,34 @@ namespace MRUGuiWin
         private void LinkLabelClearAll_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ClearMRUItemsRequested?.Invoke();
+        }
+    
+        private void RepositionHeader()
+        {
+            int captionWidth = TextRenderer.MeasureText(labelCaption.Text, labelCaption.Font).Width;
+            int linkWidth = TextRenderer.MeasureText(linkLabelClearAll.Text, linkLabelClearAll.Font).Width;
+            double captionPart = (double)captionWidth / (captionWidth + linkWidth);
+
+            int availableSpace = this.Width - leftMargin - rightMargin - spaceBetween;
+            labelCaption.Width = (int)(availableSpace * captionPart);
+
+            int availableForLink = availableSpace - labelCaption.Width;
+
+            if (availableForLink >= linkWidth)
+            {
+                linkLabelClearAll.Width = linkWidth;
+                linkLabelClearAll.Left = availableSpace - linkWidth;
+            } else
+            {
+                linkLabelClearAll.Left = labelCaption.Width + spaceBetween;
+                linkLabelClearAll.Width = availableForLink;
+            }
+            
+        }
+
+        private void MRUItemsControl_SizeChanged(object sender, EventArgs e)
+        {
+            RepositionHeader();
         }
     }
 }

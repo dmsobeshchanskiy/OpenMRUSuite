@@ -35,7 +35,7 @@
             // 
             // labelCaption
             // 
-            this.labelCaption.AutoSize = true;
+            this.labelCaption.AutoEllipsis = true;
             this.labelCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelCaption.Location = new System.Drawing.Point(4, 4);
             this.labelCaption.Name = "labelCaption";
@@ -57,13 +57,13 @@
             // linkLabelClearAll
             // 
             this.linkLabelClearAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabelClearAll.AutoSize = true;
+            this.linkLabelClearAll.AutoEllipsis = true;
             this.linkLabelClearAll.Location = new System.Drawing.Point(189, 10);
             this.linkLabelClearAll.Name = "linkLabelClearAll";
             this.linkLabelClearAll.Size = new System.Drawing.Size(45, 13);
             this.linkLabelClearAll.TabIndex = 2;
             this.linkLabelClearAll.TabStop = true;
-            this.linkLabelClearAll.Text = "Clear All";
+            this.linkLabelClearAll.Text = "Clear All items";
             this.linkLabelClearAll.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabelClearAll_LinkClicked);
             // 
             // MRUItemsControl
@@ -76,8 +76,8 @@
             this.MinimumSize = new System.Drawing.Size(160, 200);
             this.Name = "MRUItemsControl";
             this.Size = new System.Drawing.Size(243, 264);
+            this.SizeChanged += new System.EventHandler(this.MRUItemsControl_SizeChanged);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
