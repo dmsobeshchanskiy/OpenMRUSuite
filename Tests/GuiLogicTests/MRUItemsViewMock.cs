@@ -14,7 +14,7 @@ namespace Tests.GuiLogicTests
 
         public void Initialize(IMRUManager manager, MRUGuiLocalization localization)
         {
-            MRUGuiLogic logic = new MRUGuiLogic(this, manager, localization);
+            _ = new MRUGuiLogic(this, manager, localization);
         }
 
         public bool IsActionAllowed(string actionDescription)

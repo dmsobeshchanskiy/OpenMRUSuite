@@ -8,7 +8,7 @@ namespace WindowsFormsDemo
 {
     public partial class Form1 : Form
     {
-        private MRUManager manager;
+        private readonly MRUManager manager;
         public Form1()
         {
             InitializeComponent();

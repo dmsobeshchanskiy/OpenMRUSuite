@@ -27,7 +27,7 @@ namespace MRUGuiWin
             this.labelCaption.Text = localization.Caption;
             this.linkLabelClearAll.Text = localization.ClearAllLabel;
             RepositionHeader();
-            MRUGuiLogic logic = new MRUGuiLogic(this, manager, localization);
+            _ = new MRUGuiLogic(this, manager, localization);
         }
 
         public void ShowMRUItems(List<MRUItemsContainer> containers)
@@ -64,9 +64,9 @@ namespace MRUGuiWin
         private MRUGuiLocalization localization;
         private Image imageForItem;
 
-        private int leftMargin = 4;
-        private int rightMargin = 4;
-        private int spaceBetween = 2;
+        private readonly int leftMargin = 4;
+        private readonly int rightMargin = 4;
+        private readonly int spaceBetween = 2;
 
         private void DisplayContainers(List<MRUItemsContainer> containers)
         {

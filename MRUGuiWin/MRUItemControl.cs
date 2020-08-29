@@ -44,7 +44,7 @@ namespace MRUGuiWin
         }
 
         private Color normalColor = SystemColors.Control;
-        private Color hoveredColor = SystemColors.ControlDark;
+        private readonly Color hoveredColor = SystemColors.ControlDark;
 
         public MRUItemControl()
         {

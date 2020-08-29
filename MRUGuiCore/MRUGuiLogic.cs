@@ -17,9 +17,9 @@ namespace MRUGuiCore
         }
 
 
-        private IMRUManager manager;
-        private MRUGuiLocalization localization;
-        private IMRUItemsView view;
+        private readonly IMRUManager manager;
+        private readonly MRUGuiLocalization localization;
+        private readonly IMRUItemsView view;
 
         private void PerformInitialize()
         {
