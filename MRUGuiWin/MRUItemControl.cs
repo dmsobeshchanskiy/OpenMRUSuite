@@ -81,8 +81,11 @@ namespace MRUGuiWin
 
         private void ApplySelection()
         {
-            this.BackColor = hoveredColor;
-            panelActions.Visible = true;
+            if (!panelActions.Visible)
+            {
+                this.BackColor = hoveredColor;
+                panelActions.Visible = true;
+            }
         }
 
         private void DiscardSelection()

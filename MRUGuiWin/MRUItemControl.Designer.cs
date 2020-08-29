@@ -52,6 +52,7 @@
             this.labelFileName.TabIndex = 1;
             this.labelFileName.Text = "File name g";
             this.labelFileName.Click += new System.EventHandler(this.MRUItemControl_Click);
+            this.labelFileName.MouseEnter += new System.EventHandler(this.MRUItemControl_MouseEnter);
             this.labelFileName.MouseLeave += new System.EventHandler(this.MRUItemControl_MouseLeave);
             // 
             // labelPath
@@ -66,6 +67,7 @@
             this.labelPath.TabIndex = 2;
             this.labelPath.Text = "Full path to file";
             this.labelPath.Click += new System.EventHandler(this.MRUItemControl_Click);
+            this.labelPath.MouseEnter += new System.EventHandler(this.MRUItemControl_MouseEnter);
             this.labelPath.MouseLeave += new System.EventHandler(this.MRUItemControl_MouseLeave);
             // 
             // panelActions
@@ -110,6 +112,7 @@
             this.pictureBoxFileIco.TabIndex = 0;
             this.pictureBoxFileIco.TabStop = false;
             this.pictureBoxFileIco.Click += new System.EventHandler(this.MRUItemControl_Click);
+            this.pictureBoxFileIco.MouseEnter += new System.EventHandler(this.MRUItemControl_MouseEnter);
             this.pictureBoxFileIco.MouseLeave += new System.EventHandler(this.MRUItemControl_MouseLeave);
             // 
             // MRUItemControl
