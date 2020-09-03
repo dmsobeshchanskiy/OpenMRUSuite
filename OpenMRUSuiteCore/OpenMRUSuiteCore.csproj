@@ -2,6 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <SignAssembly>false</SignAssembly>
+    <Authors>Dmytro Sobeshchanskiy</Authors>
+    <Copyright>MIT</Copyright>
+    <PackageProjectUrl>https://github.com/dmsobeshchanskiy/OpenMRUSuite</PackageProjectUrl>
+    <PackageTags>MRU most recently used files</PackageTags>
+    <Description>Open MRU Siute (core part)
+Contains interfaces and implementations for to store of records about MRU files and their management. 
+Also, contains interfaces for 'view' part and its logic.</Description>
+    <PackageReleaseNotes>Initial version for .Net Standart 2.0</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageIcon>mru-core-logo.jpg</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\Media\mru-core-logo.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
