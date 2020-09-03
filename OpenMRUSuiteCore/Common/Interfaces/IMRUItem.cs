@@ -4,17 +4,17 @@
 namespace OpenMRUSuiteCore.Common.Interfaces
 {
     /// <summary>
-    /// Represent MRU item
+    /// Represents MRU item
     /// </summary>
     public interface IMRUItem
     {
         /// <summary>
-        /// Full path to file
+        /// Full path to file (also used as id of MRU item)
         /// </summary>
         string FilePath { get; }
         
         /// <summary>
-        /// How menu times file was selected from manager
+        /// How menu times file was selected from manager / menu
         /// </summary>
         int SelectedCount { get; }
         
@@ -24,7 +24,7 @@ namespace OpenMRUSuiteCore.Common.Interfaces
         bool Pinned { get; }
        
         /// <summary>
-        /// Show date of last access to the MRU
+        /// Date of last access to the MRU
         /// </summary>
         DateTime LastAccessedDate { get; }
     }
