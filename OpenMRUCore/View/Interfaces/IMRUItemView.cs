@@ -1,4 +1,4 @@
-﻿using OpenMRU.Core.Common.Interfaces;
+﻿using OpenMRU.Core.Common.Models;
 using OpenMRU.Core.View.Localization;
 using System;
 
@@ -9,7 +9,7 @@ namespace OpenMRU.Core.View.Interfaces
         event Action<string> PinItemRequested;
         event Action<string> DeleteItemRequested;
         event Action<string> ItemSelected;
-        void Initialize(IMRUItem item, MRUGuiItemLocalization localization);
-        void Initialize(IMRUItem item, MRUGuiItemLocalization localization, string imagePathForItem);
+        void Initialize(MRUItem item, MRUGuiItemLocalization localization);
+        void Initialize(MRUItem item, MRUGuiItemLocalization localization, string imagePathForItem);
     }
 }

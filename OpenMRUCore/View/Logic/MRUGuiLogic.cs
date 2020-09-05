@@ -66,7 +66,7 @@ namespace OpenMRU.Core.View.Logic
         {
             List<MRUItemsContainer> containers = new List<MRUItemsContainer>();
 
-            IEnumerable<IMRUItem> pinnedItems = manager.MRUItems.Where(item => item.Pinned)
+            IEnumerable<MRUItem> pinnedItems = manager.MRUItems.Where(item => item.Pinned)
                                                                 .OrderByDescending(item => item.LastAccessedDate);
             MRUItemsContainer pinnedContainer = new MRUItemsContainer
             {
@@ -74,7 +74,7 @@ namespace OpenMRU.Core.View.Logic
                 Items = pinnedItems
             };
 
-            IEnumerable<IMRUItem> otherItems = manager.MRUItems.Where(item => !item.Pinned)
+            IEnumerable<MRUItem> otherItems = manager.MRUItems.Where(item => !item.Pinned)
                                                                .OrderByDescending(item => item.LastAccessedDate);
             MRUItemsContainer otherContainer = new MRUItemsContainer
             {

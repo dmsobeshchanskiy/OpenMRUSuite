@@ -1,4 +1,4 @@
-﻿using OpenMRU.Core.Common.Interfaces;
+﻿using OpenMRU.Core.Common.Models;
 using OpenMRU.Core.View.Interfaces;
 using OpenMRU.Core.View.Localization;
 using System;
@@ -11,12 +11,12 @@ namespace CoreTests.Mocks
         public event Action<string> DeleteItemRequested;
         public event Action<string> ItemSelected;
 
-        public void Initialize(IMRUItem item, MRUGuiItemLocalization localization)
+        public void Initialize(MRUItem item, MRUGuiItemLocalization localization)
         {
             Initialize(item, localization, null);
         }
 
-        public void Initialize(IMRUItem item, MRUGuiItemLocalization localization, string itemImagePath)
+        public void Initialize(MRUItem item, MRUGuiItemLocalization localization, string itemImagePath)
         {
             this.item = item;
         }
@@ -38,6 +38,6 @@ namespace CoreTests.Mocks
             ItemSelected.Invoke(item.FilePath);
         }
 
-        private IMRUItem item;
+        private MRUItem item;
     }
 }

@@ -1,5 +1,4 @@
-﻿using OpenMRU.Core.Common.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace OpenMRU.Core.Common.Models
 {
@@ -16,6 +15,6 @@ namespace OpenMRU.Core.Common.Models
         /// <summary>
         /// MRU items of this group
         /// </summary>
-        public IEnumerable<IMRUItem> Items { get; set; }
+        public IEnumerable<MRUItem> Items { get; set; }
     }
 }

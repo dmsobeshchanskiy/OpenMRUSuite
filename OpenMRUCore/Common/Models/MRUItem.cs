@@ -1,5 +1,4 @@
-﻿using OpenMRU.Core.Common.Interfaces;
-using System;
+﻿using System;
 
 
 namespace OpenMRU.Core.Common.Models
@@ -7,7 +6,7 @@ namespace OpenMRU.Core.Common.Models
     /// <summary>
     /// Represents MRU item
     /// </summary>
-    public class MRUItem : IMRUItem
+    public class MRUItem
     {
         /// <summary>
         /// Full path to file (also used as id of MRU item)

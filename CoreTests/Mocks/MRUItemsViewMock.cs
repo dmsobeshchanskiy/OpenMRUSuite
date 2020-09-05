@@ -30,7 +30,7 @@ namespace CoreTests.Mocks
             ItemViews = new List<IMRUItemView>();
             foreach (MRUItemsContainer container in containers)
             {
-                foreach (IMRUItem item in container.Items)
+                foreach (MRUItem item in container.Items)
                 {
                     MRUItemViewMock view = new MRUItemViewMock();
                     view.Initialize(item, new MRUGuiItemLocalization());
