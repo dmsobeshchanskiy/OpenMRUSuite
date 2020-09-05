@@ -1,5 +1,5 @@
-﻿using OpenMRUSuiteCore.Common.Interfaces;
-using OpenMRUSuiteCore.Common.Models;
+﻿using OpenMRU.Core.Common.Interfaces;
+using OpenMRU.Core.Common.Models;
 using System.Collections.Generic;
 
 namespace CoreTests.Mocks

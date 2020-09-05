@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
-namespace OpenMRUSuiteCore.View.Localization
+namespace OpenMRU.Core.View.Localization
 {
     public class MRUGuiItemLocalization
     {

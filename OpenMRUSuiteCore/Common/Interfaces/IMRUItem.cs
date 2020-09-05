@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace OpenMRUSuiteCore.Common.Interfaces
+namespace OpenMRU.Core.Common.Interfaces
 {
     /// <summary>
     /// Represents MRU item

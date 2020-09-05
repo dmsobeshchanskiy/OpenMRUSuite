@@ -1,8 +1,8 @@
-﻿using OpenMRUSuiteCore.Common.Models;
+﻿using OpenMRU.Core.Common.Models;
 using System.Collections.Generic;
 
 
-namespace OpenMRUSuiteCore.Common.Interfaces
+namespace OpenMRU.Core.Common.Interfaces
 {
     /// <summary>
     /// MRU items storage interface

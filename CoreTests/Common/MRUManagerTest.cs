@@ -1,7 +1,7 @@
 ﻿using CoreTests.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenMRUSuiteCore.Common.Implementations;
-using OpenMRUSuiteCore.Common.Models;
+using OpenMRU.Core.Common.Implementations;
+using OpenMRU.Core.Common.Models;
 using System;
 using System.Collections.Generic;
 

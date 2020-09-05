@@ -1,6 +1,6 @@
-﻿using OpenMRUSuiteCore.Common.Interfaces;
-using OpenMRUSuiteCore.View.Interfaces;
-using OpenMRUSuiteCore.View.Localization;
+﻿using OpenMRU.Core.Common.Interfaces;
+using OpenMRU.Core.View.Interfaces;
+using OpenMRU.Core.View.Localization;
 using System;
 
 namespace CoreTests.Mocks

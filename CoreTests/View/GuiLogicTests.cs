@@ -1,8 +1,8 @@
 ﻿using CoreTests.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenMRUSuiteCore.Common.Implementations;
-using OpenMRUSuiteCore.Common.Models;
-using OpenMRUSuiteCore.View.Localization;
+using OpenMRU.Core.Common.Implementations;
+using OpenMRU.Core.Common.Models;
+using OpenMRU.Core.View.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;

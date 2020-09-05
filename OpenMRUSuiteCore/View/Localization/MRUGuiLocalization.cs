@@ -1,5 +1,5 @@
 ﻿
-namespace OpenMRUSuiteCore.View.Localization
+namespace OpenMRU.Core.View.Localization
 {
     public class MRUGuiLocalization
     {

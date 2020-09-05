@@ -1,7 +1,7 @@
-﻿using OpenMRUSuiteCore.Common.Interfaces;
+﻿using OpenMRU.Core.Common.Interfaces;
 using System.Collections.Generic;
 
-namespace OpenMRUSuiteCore.Common.Models
+namespace OpenMRU.Core.Common.Models
 {
     /// <summary>
     /// Represents a group of MRU items

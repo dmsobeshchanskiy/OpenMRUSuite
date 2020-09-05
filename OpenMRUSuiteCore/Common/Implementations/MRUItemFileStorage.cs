@@ -1,11 +1,11 @@
-﻿using OpenMRUSuiteCore.Common.Interfaces;
-using OpenMRUSuiteCore.Common.Models;
+﻿using OpenMRU.Core.Common.Interfaces;
+using OpenMRU.Core.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace OpenMRUSuiteCore.Common.Implementations
+namespace OpenMRU.Core.Common.Implementations
 {
     /// <summary>
     /// MRU items storage that uses .xml file  

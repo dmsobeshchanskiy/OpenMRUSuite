@@ -1,11 +1,11 @@
-﻿using OpenMRUSuiteCore.Common.Interfaces;
-using OpenMRUSuiteCore.Common.Models;
-using OpenMRUSuiteCore.View.Interfaces;
-using OpenMRUSuiteCore.View.Localization;
+﻿using OpenMRU.Core.Common.Interfaces;
+using OpenMRU.Core.Common.Models;
+using OpenMRU.Core.View.Interfaces;
+using OpenMRU.Core.View.Localization;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OpenMRUSuiteCore.View.Logic
+namespace OpenMRU.Core.View.Logic
 {
     public class MRUGuiLogic
     {

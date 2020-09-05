@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OpenMRUSuiteCore\OpenMRUSuiteCore.csproj" />
+    <ProjectReference Include="..\OpenMRUSuiteCore\OpenMRU.Core.csproj" />
   </ItemGroup>
 
 </Project>

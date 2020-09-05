@@ -1,8 +1,8 @@
-﻿using OpenMRUSuiteCore.Common.Interfaces;
+﻿using OpenMRU.Core.Common.Interfaces;
 using System;
 
 
-namespace OpenMRUSuiteCore.Common.Models
+namespace OpenMRU.Core.Common.Models
 {
     /// <summary>
     /// Represents MRU item

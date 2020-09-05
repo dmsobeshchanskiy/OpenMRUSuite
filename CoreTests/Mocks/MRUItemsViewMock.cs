@@ -1,8 +1,8 @@
-﻿using OpenMRUSuiteCore.Common.Interfaces;
-using OpenMRUSuiteCore.Common.Models;
-using OpenMRUSuiteCore.View.Interfaces;
-using OpenMRUSuiteCore.View.Localization;
-using OpenMRUSuiteCore.View.Logic;
+﻿using OpenMRU.Core.Common.Interfaces;
+using OpenMRU.Core.Common.Models;
+using OpenMRU.Core.View.Interfaces;
+using OpenMRU.Core.View.Localization;
+using OpenMRU.Core.View.Logic;
 using System;
 using System.Collections.Generic;
 

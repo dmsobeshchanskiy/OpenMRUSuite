@@ -1,8 +1,8 @@
-﻿using OpenMRUSuiteCore.Common.Interfaces;
-using OpenMRUSuiteCore.View.Localization;
+﻿using OpenMRU.Core.Common.Interfaces;
+using OpenMRU.Core.View.Localization;
 using System;
 
-namespace OpenMRUSuiteCore.View.Interfaces
+namespace OpenMRU.Core.View.Interfaces
 {
     public interface IMRUItemView
     {
