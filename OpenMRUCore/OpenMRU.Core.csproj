@@ -14,8 +14,8 @@ Also, contains interfaces for 'view' part and its logic.</Description>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>mru-core-logo.jpg</PackageIcon>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
-    <PackageId>OpenMRUSuite.Core</PackageId>
-    <Product>OpenMRUSuite.Core</Product>
+    <PackageId>OpenMRU.Core</PackageId>
+    <Product>OpenMRU.Core</Product>
     <title>Open MRU Siute (core part)</title>
     <summary>Store and management of MRU files</summary>
   </PropertyGroup>
