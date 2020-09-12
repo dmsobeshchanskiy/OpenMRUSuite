@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>OpenMRU.WinForm</id>
+    <version>1.0.0</version>
+    <title>Open MRU Siute (WinForm GUI controls)</title>
+    <authors>Dmytro Sobeshchanskiy</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="file">license.txt</license>
+	<icon>mru-win-form.jpg</icon>
+    <projectUrl>https://github.com/dmsobeshchanskiy/OpenMRUSuite</projectUrl>
+    <description>Open MRU Siute (WinForm GUI controls)
+Contains WinForm GUI controls for MRU items functionality
+	</description>
+	<summary>WinForm GUI controls for MRU items functionality</summary>
+    <releaseNotes>Initial version.</releaseNotes>
+    <copyright>MIT</copyright>
+    <tags>MRU most recently used files GUI</tags>
+	<dependencies>
+		<group targetFramework=".NETFramework4.7.1"></group>
+		<group>
+			<dependency id="OpenMRU.Core" version="1.0.0" />
+		</group>
+	</dependencies>
+  </metadata>
+  <files>
+    <file src="..\Media\mru-win-form.jpg" target="" />
+	<file src="license.txt" target="" />
+  </files>
+</package>

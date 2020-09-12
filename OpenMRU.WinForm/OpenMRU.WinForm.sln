@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenMRU.WinForm", "OpenMRU.WinForm.csproj", "{474D4628-9F14-47C5-BE69-55B3F21AE30A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{474D4628-9F14-47C5-BE69-55B3F21AE30A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{474D4628-9F14-47C5-BE69-55B3F21AE30A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{474D4628-9F14-47C5-BE69-55B3F21AE30A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{474D4628-9F14-47C5-BE69-55B3F21AE30A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5558C6E2-E0F5-45D5-8D1A-CB630B371956}
+	EndGlobalSection
+EndGlobal
