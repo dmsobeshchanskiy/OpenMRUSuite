@@ -16,7 +16,7 @@ namespace CoreTests.Mocks
 
         public void Initialize(IMRUManager manager, MRUGuiLocalization localization)
         {
-            _ = new MRUGuiLogic(this, manager, localization);
+            logic = new MRUGuiLogic(this, manager, localization);
         }
 
         public bool IsActionAllowed(string actionDescription)
@@ -41,12 +41,19 @@ namespace CoreTests.Mocks
 
         // mock specific properties / methods
 
+        private MRUGuiLogic logic;
+
         public List<MRUItemsContainer> ShowedContainers { get; private set; }
         public bool IsActionAllowedResponse { get; set; }
 
         public void InvokeClearMRUItemsRequested()
         {
             ClearMRUItemsRequested.Invoke();
+        }
+
+        internal void SetDateProvider (IDateProvider provider)
+        {
+            logic.SetDateProvider(provider);
         }
 
     }

@@ -18,6 +18,31 @@ namespace OpenMRU.Core.View.Localization
         /// Default value is [Pinned items]
         /// </summary>
         public string PinnedItemsLabel { get; set; }
+
+        /// <summary>
+        /// Label before today's items list
+        /// Default value is [Today]
+        /// </summary>
+        public string TodayItemsLabel { get; set; }
+
+        /// <summary>
+        /// Label before yesterday's items list
+        /// Default value is [Yesterday]
+        /// </summary>
+        public string YesterdayItemsLabel { get; set; }
+
+        /// <summary>
+        /// Label before this week's items list
+        /// Default value is [This week]
+        /// </summary>
+        public string ThisWeekItemsLabel { get; set; }
+
+        /// <summary>
+        /// Label before this month's items list
+        /// Default value is [This month]
+        /// </summary>
+        public string ThisMonthItemsLabel { get; set; }
+
         /// <summary>
         /// Label before other items list
         /// Default value is [Other items]
@@ -47,6 +72,10 @@ namespace OpenMRU.Core.View.Localization
             Caption = "Recent files";
             ClearAllLabel = "Clear list";
             PinnedItemsLabel = "Pinned items";
+            TodayItemsLabel = "Today";
+            YesterdayItemsLabel = "Yesterday";
+            ThisWeekItemsLabel = "This week";
+            ThisMonthItemsLabel = "This month";
             OtherItemsLabel = "Other items";
             NoRecentItemsLabel = "No recent items";
             ConfirmActionDialogCaption = "Confirm action";

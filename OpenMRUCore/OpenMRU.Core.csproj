@@ -29,6 +29,9 @@ Also, contains interfaces for 'view' part and its logic.</Description>
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>CoreTests</_Parameter1>
+    </AssemblyAttribute>
   </ItemGroup>
 
 </Project>

@@ -27,9 +27,10 @@ namespace CoreTests.View
 
             MRUItemViewMock itemView = GetMockItemViewForPath("path1");
             itemView.InvokePinItemRequested();
+            MRUGuiLocalization localization = new MRUGuiLocalization();
 
             Assert.IsTrue(viewMock.ShowedContainers.Count == 1, "Wrong containers count");
-            Assert.IsTrue(viewMock.ShowedContainers[0].ContainerCaption == "", "Wrong container caption");
+            Assert.IsTrue(viewMock.ShowedContainers[0].ContainerCaption == localization.TodayItemsLabel, "Wrong container caption");
             Assert.IsTrue(viewMock.ItemViews.Count == 2, "Wrong items count");
         }
 
@@ -130,14 +131,16 @@ namespace CoreTests.View
 
         private void Initialize()
         {
-            storage = new InMemoryMRUStorage(CreateItems());
+            var today = DateTime.Now;
+            storage = new InMemoryMRUStorage(CreateItems(today));
             manager = new MRUManager();
             manager.Initialize(storage);
             viewMock = new MRUItemsViewMock();
             viewMock.Initialize(manager, new MRUGuiLocalization());
+            viewMock.SetDateProvider(new MockDateProvider(today, DayOfWeek.Monday));
         }
 
-        private List<MRUItem> CreateItems()
+        private List<MRUItem> CreateItems(DateTime today)
         {
             List<MRUItem> items = new List<MRUItem>();
 
@@ -146,14 +149,14 @@ namespace CoreTests.View
                 FilePath = "path1",
                 Pinned = true,
                 SelectedCount = 1,
-                LastAccessedDate = new DateTime(2019, 4, 27)
+                LastAccessedDate = today
             };
             MRUItem item2 = new MRUItem
             {
                 FilePath = "path2",
                 Pinned = false,
                 SelectedCount = 3,
-                LastAccessedDate = new System.DateTime(2019, 4, 26)
+                LastAccessedDate = today
             };
             items.Add(item1);
             items.Add(item2);
