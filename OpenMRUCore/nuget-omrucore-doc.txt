@@ -1,0 +1,33 @@
+## OpenMRU.Core
+
+### About
+
+OpenMRU.Core is a part of OpenMRUSuite and serves as a base for "MRU (Most resently used) files" functionality. It contains interfaces and their default implementations for to management of MRU items, interfaces for GUI part and logic that works with this GUI's interface.
+
+### MRU GUI controls
+
+Easiest way to add MRU functionality to you software is to use OpenMRU package corresponding to your GUI Framework (For example, use OpenMRU.WinForm for software, that uses WinForm for GUI part).
+
+### Quick start with Core
+
+If there is no OpenMRU GUI package suitable for you or you want your own GUI/Core part implementation, than next 3 steps should be done:
+
+1. Create 2 GUI controls: 
+ - control for single MRU item presentation and implement OpenMRU.Core.View.Interfaces.IMRUItemView by this control and 
+ - control for MRU items list presentation and implement OpenMRU.Core.View.Interfaces.IMRUItemsView by this control.
+
+2. (Optionally) Provide own implementations for interfaces from OpenMRU.Core.Common.Interfaces namespace: IMRUItemStorage and IMRUManager. 
+
+OpenMRU.Core provides default implementations for these interfaces that are located in OpenMRU.Core.Common.Implementations namespace: MRUItemFileStorage and MRUManager. 
+MRUManager is responsible for management of MRU items and uses IMRUItemStorage implementation for to write / read MRU items.  MRUItemFileStorage is responsible for saving MRU items and uses XML file for it.
+So, if you want to use another way of storing MRU items (for exmaple, in DB), or provide own logic for MRU items management - you can provide own implementation (s) of corresponding interfaces and use them with OpenMRUSuite.
+
+
+3. Add control (IMRUItemsView implementation from step 1) to your application GUI and bind it to OpenMRU.Core.View.LogicMRUGuiLogic. For doing this you should create LogicMRUGuiLogic instance passing next parameters to its constructor: 
+- IMRUItemsView implementation (control that was just added); 
+- IMRUManger implementation (default or your own)
+- MRUGuiLocalization class instance from OpenMRU.Core.View.Localization namespace. You can just create instance of this class by calling constructor without parameters for default english localization. Or create instance of localization class and assign localized values to corresponding properties of this class.
+
+
+### Links
+https://github.com/dmsobeshchanskiy/OpenMRUSuite
