@@ -65,6 +65,22 @@ namespace CoreTests.View
         }
 
         [TestMethod]
+        public void ShouldDisplayContainersFor_AllRanges_BeginOfMonth_Monday()
+        {
+            DateTime today = new DateTime(2020, 9, 1, 10, 8, 17);
+            InitializeWithItems(CreateAllRangeItems(today), today, DayOfWeek.Monday);
+            var localization = new MRUGuiLocalization();
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 4, "Wrong containers count");
+
+            Assert.IsTrue(viewMock.ShowedContainers[0].ContainerCaption == localization.PinnedItemsLabel, "Wrong container 0 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[1].ContainerCaption == localization.TodayItemsLabel, "Wrong container 1 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[2].ContainerCaption == localization.YesterdayItemsLabel, "Wrong container 2 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[3].ContainerCaption == localization.OtherItemsLabel, "Wrong container 3 caption");
+
+            Assert.IsTrue(viewMock.ItemViews.Count == 5, "Wrong items count");
+        }
+
+        [TestMethod]
         public void ShouldDisplayContainersFor_CgangePinnedState_Monday()
         {
             DateTime today = new DateTime(2020, 9, 16, 10, 8, 17);
@@ -135,6 +151,23 @@ namespace CoreTests.View
             Assert.IsTrue(viewMock.ShowedContainers[2].ContainerCaption == localization.YesterdayItemsLabel, "Wrong container 2 caption");
             Assert.IsTrue(viewMock.ShowedContainers[3].ContainerCaption == localization.ThisWeekItemsLabel, "Wrong container 3 caption");
             Assert.IsTrue(viewMock.ShowedContainers[4].ContainerCaption == localization.ThisMonthItemsLabel, "Wrong container 4 caption");
+
+            Assert.IsTrue(viewMock.ItemViews.Count == 5, "Wrong items count");
+        }
+
+        [TestMethod]
+        public void ShouldDisplayContainersFor_AllRanges_BeginOfWeek_Sunday()
+        {
+            DateTime today = new DateTime(2020, 9, 20, 10, 8, 17);
+            DateTime today1 = new DateTime(2020, 9, 20, 12, 8, 17);
+            InitializeWithItems(CreateAllRangeItems(today), today1, DayOfWeek.Sunday);
+            var localization = new MRUGuiLocalization();
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 4, "Wrong containers count");
+
+            Assert.IsTrue(viewMock.ShowedContainers[0].ContainerCaption == localization.PinnedItemsLabel, "Wrong container 0 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[1].ContainerCaption == localization.TodayItemsLabel, "Wrong container 1 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[2].ContainerCaption == localization.YesterdayItemsLabel, "Wrong container 2 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[3].ContainerCaption == localization.ThisMonthItemsLabel, "Wrong container 3 caption");
 
             Assert.IsTrue(viewMock.ItemViews.Count == 5, "Wrong items count");
         }

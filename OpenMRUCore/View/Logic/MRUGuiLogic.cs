@@ -104,7 +104,8 @@ namespace OpenMRU.Core.View.Logic
         private List<MRUItemsContainer> GroupByContainer(IEnumerable<MRUItem> items)
         {
             List<MRUItemsContainer> containers = new List<MRUItemsContainer>();
-            DateTime today = dateProvider.Now;
+            DateTime now = dateProvider.Now;
+            DateTime today = new DateTime(now.Year, now.Month, now.Day, 0, 0, 1);
             DateTime yesterday = today.AddDays(-1);
             DateTime weekBeginDate = today.AddDays((int)dateProvider.FirstDayOfWeek - (int)today.DayOfWeek);
             if (weekBeginDate > today)
@@ -113,6 +114,7 @@ namespace OpenMRU.Core.View.Logic
             }
             DateTime monthBeginDate = new DateTime(today.Year, today.Month, 1);
             DateTime monthUpperBound = today == weekBeginDate ? yesterday : weekBeginDate;
+            DateTime otherUpperBound = IsTheSameDay(today, monthBeginDate) ? yesterday : monthBeginDate;
 
             // get pinned items
             IEnumerable<MRUItem> pinnedItems = items.Where(item => item.Pinned)
@@ -156,7 +158,7 @@ namespace OpenMRU.Core.View.Logic
             };
 
             // get other items
-            IEnumerable<MRUItem> otherItems = items.Where(item => !item.Pinned && item.LastAccessedDate < monthBeginDate);
+            IEnumerable<MRUItem> otherItems = items.Where(item => !item.Pinned && item.LastAccessedDate < otherUpperBound);
             MRUItemsContainer otherContainer = new MRUItemsContainer
             {
                 ContainerCaption = localization.OtherItemsLabel,
