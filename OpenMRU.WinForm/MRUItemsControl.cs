@@ -28,7 +28,7 @@ namespace OpenMRU.WinForm
             this.labelCaption.Text = localization.Caption;
             this.linkLabelClearAll.Text = localization.ClearAllLabel;
             RepositionHeader();
-            _ = new MRUGuiLogic(this, manager, localization);
+            logic = new MRUGuiLogic(this, manager, localization);
         }
 
         public void ShowMRUItems(List<MRUItemsContainer> containers)
@@ -68,6 +68,7 @@ namespace OpenMRU.WinForm
         private readonly int leftMargin = 4;
         private readonly int rightMargin = 4;
         private readonly int spaceBetween = 2;
+        private MRUGuiLogic logic;
 
         private void DisplayContainers(List<MRUItemsContainer> containers)
         {
@@ -129,6 +130,17 @@ namespace OpenMRU.WinForm
         private void MRUItemsControl_SizeChanged(object sender, EventArgs e)
         {
             RepositionHeader();
+        }
+
+        private void buttonClearFilter_Click(object sender, EventArgs e)
+        {
+            textBoxFilter.Text = string.Empty;
+            logic.SetFileNameFilter(textBoxFilter.Text);
+        }
+
+        private void textBoxFilter_KeyUp(object sender, KeyEventArgs e)
+        {
+            logic.SetFileNameFilter(textBoxFilter.Text);
         }
     }
 }

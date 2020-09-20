@@ -53,6 +53,7 @@ namespace OpenMRU.WinForm
             FileInfo fileInfo = new FileInfo(item.FilePath);
             labelFileName.Text = fileInfo.Name;
             labelPath.Text = fileInfo.DirectoryName;
+            labelDate.Text = item.LastAccessedDate.ToString("dd/MM/yyyy");
             ToolTip tt = new ToolTip();
             tt.SetToolTip(this.pictureBoxRemove, localization.DeleteItemLabel);
             if (item.Pinned)

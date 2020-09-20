@@ -34,6 +34,7 @@
             this.pictureBoxPin = new System.Windows.Forms.PictureBox();
             this.pictureBoxRemove = new System.Windows.Forms.PictureBox();
             this.pictureBoxFileIco = new System.Windows.Forms.PictureBox();
+            this.labelDate = new System.Windows.Forms.Label();
             this.panelActions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRemove)).BeginInit();
@@ -48,7 +49,7 @@
             this.labelFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelFileName.Location = new System.Drawing.Point(54, 4);
             this.labelFileName.Name = "labelFileName";
-            this.labelFileName.Size = new System.Drawing.Size(226, 28);
+            this.labelFileName.Size = new System.Drawing.Size(294, 28);
             this.labelFileName.TabIndex = 1;
             this.labelFileName.Text = "File name g";
             this.labelFileName.Click += new System.EventHandler(this.MRUItemControl_Click);
@@ -63,7 +64,7 @@
             this.labelPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelPath.Location = new System.Drawing.Point(55, 32);
             this.labelPath.Name = "labelPath";
-            this.labelPath.Size = new System.Drawing.Size(226, 16);
+            this.labelPath.Size = new System.Drawing.Size(220, 16);
             this.labelPath.TabIndex = 2;
             this.labelPath.Text = "Full path to file";
             this.labelPath.Click += new System.EventHandler(this.MRUItemControl_Click);
@@ -75,7 +76,7 @@
             this.panelActions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelActions.Controls.Add(this.pictureBoxPin);
             this.panelActions.Controls.Add(this.pictureBoxRemove);
-            this.panelActions.Location = new System.Drawing.Point(235, 3);
+            this.panelActions.Location = new System.Drawing.Point(303, 3);
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(46, 20);
             this.panelActions.TabIndex = 3;
@@ -115,17 +116,27 @@
             this.pictureBoxFileIco.MouseEnter += new System.EventHandler(this.MRUItemControl_MouseEnter);
             this.pictureBoxFileIco.MouseLeave += new System.EventHandler(this.MRUItemControl_MouseLeave);
             // 
+            // labelDate
+            // 
+            this.labelDate.AutoSize = true;
+            this.labelDate.Location = new System.Drawing.Point(280, 34);
+            this.labelDate.Name = "labelDate";
+            this.labelDate.Size = new System.Drawing.Size(65, 13);
+            this.labelDate.TabIndex = 4;
+            this.labelDate.Text = "2020/04/25";
+            // 
             // MRUItemControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.labelDate);
             this.Controls.Add(this.panelActions);
             this.Controls.Add(this.labelPath);
             this.Controls.Add(this.labelFileName);
             this.Controls.Add(this.pictureBoxFileIco);
             this.Name = "MRUItemControl";
-            this.Size = new System.Drawing.Size(284, 54);
+            this.Size = new System.Drawing.Size(352, 54);
             this.Click += new System.EventHandler(this.MRUItemControl_Click);
             this.MouseEnter += new System.EventHandler(this.MRUItemControl_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.MRUItemControl_MouseLeave);
@@ -134,6 +145,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRemove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFileIco)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -145,5 +157,6 @@
         private System.Windows.Forms.Panel panelActions;
         private System.Windows.Forms.PictureBox pictureBoxRemove;
         private System.Windows.Forms.PictureBox pictureBoxPin;
+        private System.Windows.Forms.Label labelDate;
     }
 }
