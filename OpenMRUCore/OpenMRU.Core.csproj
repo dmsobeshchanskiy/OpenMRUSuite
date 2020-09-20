@@ -18,6 +18,7 @@ Also, contains interfaces for 'view' part and its logic.</Description>
     <Product>OpenMRU.Core</Product>
     <title>Open MRU Siute (core part)</title>
     <summary>Store and management of MRU files</summary>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
