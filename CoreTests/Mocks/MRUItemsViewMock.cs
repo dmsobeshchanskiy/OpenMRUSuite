@@ -51,6 +51,11 @@ namespace CoreTests.Mocks
             ClearMRUItemsRequested.Invoke();
         }
 
+        public void SetFilterValue(string filter)
+        {
+            logic.SetFileNameFilter(filter);
+        }
+
         internal void SetDateProvider (IDateProvider provider)
         {
             logic.SetDateProvider(provider);

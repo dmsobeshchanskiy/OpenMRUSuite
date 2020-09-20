@@ -11,7 +11,7 @@ using System.Text;
 namespace CoreTests.View
 {
     [TestClass]
-    public class GuiLogicGroupingTests
+    public class GroupingFilteringTests
     {
         // for monday
         [TestMethod]
@@ -27,6 +27,59 @@ namespace CoreTests.View
             Assert.IsTrue(viewMock.ShowedContainers[2].ContainerCaption == localization.YesterdayItemsLabel, "Wrong container 2 caption");
             Assert.IsTrue(viewMock.ShowedContainers[3].ContainerCaption == localization.ThisWeekItemsLabel, "Wrong container 3 caption");
             Assert.IsTrue(viewMock.ShowedContainers[4].ContainerCaption == localization.ThisMonthItemsLabel, "Wrong container 4 caption");
+
+            Assert.IsTrue(viewMock.ItemViews.Count == 5, "Wrong items count");
+        }
+
+        [TestMethod]
+        public void ShouldDisplayContainersFor_AllRanges_EndOfWeek_Monday()
+        {
+            DateTime today = new DateTime(2020, 9, 20, 10, 8, 17);
+            InitializeWithItems(CreateAllRangeItems(today), today, DayOfWeek.Monday);
+            var localization = new MRUGuiLocalization();
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 5, "Wrong containers count");
+
+            Assert.IsTrue(viewMock.ShowedContainers[0].ContainerCaption == localization.PinnedItemsLabel, "Wrong container 0 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[1].ContainerCaption == localization.TodayItemsLabel, "Wrong container 1 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[2].ContainerCaption == localization.YesterdayItemsLabel, "Wrong container 2 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[3].ContainerCaption == localization.ThisWeekItemsLabel, "Wrong container 3 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[4].ContainerCaption == localization.ThisMonthItemsLabel, "Wrong container 4 caption");
+
+            Assert.IsTrue(viewMock.ItemViews.Count == 5, "Wrong items count");
+        }
+
+        [TestMethod]
+        public void ShouldDisplayContainersFor_AllRanges_BeginOfWeek_Monday()
+        {
+            DateTime today = new DateTime(2020, 9, 14, 10, 8, 17);
+            InitializeWithItems(CreateAllRangeItems(today), today, DayOfWeek.Monday);
+            var localization = new MRUGuiLocalization();
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 4, "Wrong containers count");
+
+            Assert.IsTrue(viewMock.ShowedContainers[0].ContainerCaption == localization.PinnedItemsLabel, "Wrong container 0 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[1].ContainerCaption == localization.TodayItemsLabel, "Wrong container 1 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[2].ContainerCaption == localization.YesterdayItemsLabel, "Wrong container 2 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[3].ContainerCaption == localization.ThisMonthItemsLabel, "Wrong container 3 caption");
+
+            Assert.IsTrue(viewMock.ItemViews.Count == 5, "Wrong items count");
+        }
+
+        [TestMethod]
+        public void ShouldDisplayContainersFor_CgangePinnedState_Monday()
+        {
+            DateTime today = new DateTime(2020, 9, 16, 10, 8, 17);
+            InitializeWithItems(CreateAllRangeItems(today), today, DayOfWeek.Monday);
+            var localization = new MRUGuiLocalization();
+            // get today's not pinned item
+            var itemView = GetMockItemViewForPath("C:/path2/A2");
+            itemView.InvokePinItemRequested();
+
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 4, "Wrong containers count");
+
+            Assert.IsTrue(viewMock.ShowedContainers[0].ContainerCaption == localization.PinnedItemsLabel, "Wrong container 0 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[1].ContainerCaption == localization.YesterdayItemsLabel, "Wrong container 1 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[2].ContainerCaption == localization.ThisWeekItemsLabel, "Wrong container 2 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[3].ContainerCaption == localization.ThisMonthItemsLabel, "Wrong container 3 caption");
 
             Assert.IsTrue(viewMock.ItemViews.Count == 5, "Wrong items count");
         }
@@ -122,7 +175,66 @@ namespace CoreTests.View
             Assert.IsTrue(viewMock.ItemViews.Count == 5, "Wrong items count");
         }
 
+        [TestMethod]
+        public void ShouldDisplayContainersFor_FilterCapsAndRegular_Sunday()
+        {
+            DateTime today = new DateTime(2020, 9, 15, 10, 8, 17);
+            InitializeWithItems(CreateAllRangeItems(today), today, DayOfWeek.Sunday);
+            var localization = new MRUGuiLocalization();
 
+            viewMock.SetFilterValue("a");
+
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 2, "Wrong containers count");
+            Assert.IsTrue(viewMock.ShowedContainers[0].ContainerCaption == localization.PinnedItemsLabel, "Wrong container 0 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[1].ContainerCaption == localization.TodayItemsLabel, "Wrong container 1 caption");
+            Assert.IsTrue(viewMock.ItemViews.Count == 2, "Wrong items count");
+        }
+
+        [TestMethod]
+        public void ShouldDisplayContainersFor_FilterOnlyFileName_Sunday()
+        {
+            DateTime today = new DateTime(2020, 9, 15, 10, 8, 17);
+            InitializeWithItems(CreateAllRangeItems(today), today, DayOfWeek.Sunday);
+            var localization = new MRUGuiLocalization();
+
+            viewMock.SetFilterValue("b2");
+
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 1, "Wrong containers count");
+            Assert.IsTrue(viewMock.ShowedContainers[0].ContainerCaption == localization.YesterdayItemsLabel, "Wrong container 0 caption");
+            Assert.IsTrue(viewMock.ItemViews.Count == 1, "Wrong items count");
+        }
+
+        [TestMethod]
+        public void ShouldDisplayContainersFor_IgnoreEmptyFilter_Sunday()
+        {
+            DateTime today = new DateTime(2020, 9, 15, 10, 8, 17);
+            InitializeWithItems(CreateAllRangeItems(today), today, DayOfWeek.Sunday);
+            var localization = new MRUGuiLocalization();
+
+            viewMock.SetFilterValue("");
+
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 5, "Wrong containers count");
+
+            Assert.IsTrue(viewMock.ShowedContainers[0].ContainerCaption == localization.PinnedItemsLabel, "Wrong container 0 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[1].ContainerCaption == localization.TodayItemsLabel, "Wrong container 1 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[2].ContainerCaption == localization.YesterdayItemsLabel, "Wrong container 2 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[3].ContainerCaption == localization.ThisWeekItemsLabel, "Wrong container 3 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[4].ContainerCaption == localization.ThisMonthItemsLabel, "Wrong container 4 caption");
+
+            Assert.IsTrue(viewMock.ItemViews.Count == 5, "Wrong items count");
+
+            viewMock.SetFilterValue(null);
+
+            Assert.IsTrue(viewMock.ShowedContainers.Count == 5, "Wrong containers count");
+
+            Assert.IsTrue(viewMock.ShowedContainers[0].ContainerCaption == localization.PinnedItemsLabel, "Wrong container 0 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[1].ContainerCaption == localization.TodayItemsLabel, "Wrong container 1 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[2].ContainerCaption == localization.YesterdayItemsLabel, "Wrong container 2 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[3].ContainerCaption == localization.ThisWeekItemsLabel, "Wrong container 3 caption");
+            Assert.IsTrue(viewMock.ShowedContainers[4].ContainerCaption == localization.ThisMonthItemsLabel, "Wrong container 4 caption");
+
+            Assert.IsTrue(viewMock.ItemViews.Count == 5, "Wrong items count");
+        }
 
         private InMemoryMRUStorage storage;
         private MRUManager manager;
@@ -145,7 +257,7 @@ namespace CoreTests.View
             // pinned item
             MRUItem item1 = new MRUItem
             {
-                FilePath = "path1",
+                FilePath = "C:/path1/a1",
                 Pinned = true,
                 SelectedCount = 1,
                 LastAccessedDate = today
@@ -154,7 +266,7 @@ namespace CoreTests.View
             // today's not pinned item
             MRUItem item2 = new MRUItem
             {
-                FilePath = "path2",
+                FilePath = "C:/path2/A2",
                 Pinned = false,
                 SelectedCount = 3,
                 LastAccessedDate = today
@@ -163,7 +275,7 @@ namespace CoreTests.View
             // yesterday's not pinned item
             MRUItem item3 = new MRUItem
             {
-                FilePath = "path3",
+                FilePath = "C:/path3/b2",
                 Pinned = false,
                 SelectedCount = 3,
                 LastAccessedDate = today.AddDays(-1)
@@ -172,7 +284,7 @@ namespace CoreTests.View
             // this week not pinned item
             MRUItem item4 = new MRUItem
             {
-                FilePath = "path4",
+                FilePath = "C:/path4/C2",
                 Pinned = false,
                 SelectedCount = 4,
                 LastAccessedDate = today.AddDays(-2)
@@ -181,7 +293,7 @@ namespace CoreTests.View
             // this month not pinned item
             MRUItem item5 = new MRUItem
             {
-                FilePath = "path5",
+                FilePath = "C:/b2/x1",
                 Pinned = false,
                 SelectedCount = 5,
                 LastAccessedDate = today.AddDays(-8)

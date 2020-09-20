@@ -4,6 +4,7 @@ using OpenMRU.Core.View.Interfaces;
 using OpenMRU.Core.View.Localization;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace OpenMRU.Core.View.Logic
@@ -13,6 +14,12 @@ namespace OpenMRU.Core.View.Logic
         internal void SetDateProvider (IDateProvider provider)
         {
             dateProvider = provider;
+            ShowItemsOnView();
+        }
+
+        public void SetFileNameFilter(string filter)
+        {
+            this.filter = filter;
             ShowItemsOnView();
         }
 
@@ -29,6 +36,7 @@ namespace OpenMRU.Core.View.Logic
         private readonly MRUGuiLocalization localization;
         private readonly IMRUItemsView view;
         private IDateProvider dateProvider = new DateProvider();
+        private string filter = String.Empty;
 
         private void PerformInitialize()
         {
@@ -71,7 +79,17 @@ namespace OpenMRU.Core.View.Logic
 
         private void ShowItemsOnView()
         {
-            var containers = GroupByContainer(manager.MRUItems);
+            var allItems = manager.MRUItems;
+            
+            if (!string.IsNullOrEmpty(filter))
+            {
+                allItems = allItems.Where(item => {
+                    FileInfo fi = new FileInfo(item.FilePath);
+                    return fi.Name.IndexOf(filter, StringComparison.OrdinalIgnoreCase) > -1;
+                }).ToList();
+            }
+
+            var containers = GroupByContainer(allItems);
 
             view.ShowMRUItems(containers);
 
@@ -89,7 +107,12 @@ namespace OpenMRU.Core.View.Logic
             DateTime today = dateProvider.Now;
             DateTime yesterday = today.AddDays(-1);
             DateTime weekBeginDate = today.AddDays((int)dateProvider.FirstDayOfWeek - (int)today.DayOfWeek);
+            if (weekBeginDate > today)
+            {
+                weekBeginDate = weekBeginDate.AddDays(-7);
+            }
             DateTime monthBeginDate = new DateTime(today.Year, today.Month, 1);
+            DateTime monthUpperBound = today == weekBeginDate ? yesterday : weekBeginDate;
 
             // get pinned items
             IEnumerable<MRUItem> pinnedItems = items.Where(item => item.Pinned)
@@ -125,7 +148,7 @@ namespace OpenMRU.Core.View.Logic
             };
 
             // get this month not pinned items
-            IEnumerable<MRUItem> monthItems = items.Where(item => !item.Pinned && item.LastAccessedDate < weekBeginDate && item.LastAccessedDate >= monthBeginDate);
+            IEnumerable<MRUItem> monthItems = items.Where(item => !item.Pinned && item.LastAccessedDate < monthUpperBound && item.LastAccessedDate >= monthBeginDate);
             MRUItemsContainer monthContainer = new MRUItemsContainer
             {
                 ContainerCaption = localization.ThisMonthItemsLabel,
