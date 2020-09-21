@@ -103,6 +103,8 @@ namespace OpenMRU.WinForm
             {
                 this.BackColor = hoveredColor;
                 panelActions.Visible = true;
+                timerCheckSelection.Enabled = true;
+                timerCheckSelection.Start();
             }
         }
 
@@ -112,8 +114,17 @@ namespace OpenMRU.WinForm
             {
                 this.BackColor = normalColor;
                 panelActions.Visible = false;
+                timerCheckSelection.Stop();
+                timerCheckSelection.Enabled = false;
             }
         }
 
+        private void timerCheckSelection_Tick(object sender, EventArgs e)
+        {
+            if (!this.ClientRectangle.Contains(this.PointToClient(Cursor.Position)))
+            {
+                DiscardSelection();
+            }
+        }
     }
 }

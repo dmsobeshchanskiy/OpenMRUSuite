@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelFileName = new System.Windows.Forms.Label();
             this.labelPath = new System.Windows.Forms.Label();
             this.panelActions = new System.Windows.Forms.Panel();
@@ -35,6 +36,7 @@
             this.pictureBoxRemove = new System.Windows.Forms.PictureBox();
             this.pictureBoxFileIco = new System.Windows.Forms.PictureBox();
             this.labelDate = new System.Windows.Forms.Label();
+            this.timerCheckSelection = new System.Windows.Forms.Timer(this.components);
             this.panelActions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRemove)).BeginInit();
@@ -124,6 +126,13 @@
             this.labelDate.Size = new System.Drawing.Size(65, 13);
             this.labelDate.TabIndex = 4;
             this.labelDate.Text = "2020/04/25";
+            this.labelDate.MouseEnter += new System.EventHandler(this.MRUItemControl_MouseEnter);
+            this.labelDate.MouseLeave += new System.EventHandler(this.MRUItemControl_MouseLeave);
+            // 
+            // timerCheckSelection
+            // 
+            this.timerCheckSelection.Interval = 500;
+            this.timerCheckSelection.Tick += new System.EventHandler(this.timerCheckSelection_Tick);
             // 
             // MRUItemControl
             // 
@@ -158,5 +167,6 @@
         private System.Windows.Forms.PictureBox pictureBoxRemove;
         private System.Windows.Forms.PictureBox pictureBoxPin;
         private System.Windows.Forms.Label labelDate;
+        private System.Windows.Forms.Timer timerCheckSelection;
     }
 }
