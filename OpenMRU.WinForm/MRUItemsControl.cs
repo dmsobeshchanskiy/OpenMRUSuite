@@ -134,6 +134,10 @@ namespace OpenMRU.WinForm
 
         private void buttonClearFilter_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(textBoxFilter.Text))
+            {
+                return;
+            }
             textBoxFilter.Text = string.Empty;
             logic.SetFileNameFilter(textBoxFilter.Text);
         }
