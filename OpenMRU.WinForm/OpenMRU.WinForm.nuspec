@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>OpenMRU.WinForm</id>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <title>Open MRU Siute (WinForm GUI controls)</title>
     <authors>Dmytro Sobeshchanskiy</authors>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
@@ -13,13 +13,16 @@
 Contains WinForm GUI controls for MRU items functionality
 	</description>
 	<summary>WinForm GUI controls for MRU items functionality</summary>
-    <releaseNotes>Initial version.</releaseNotes>
+    <releaseNotes>
+	- MRU items filtration;
+	- show date on MRU item control;
+	</releaseNotes>
     <copyright>MIT</copyright>
     <tags>MRU most recently used files GUI</tags>
 	<dependencies>
 		<group targetFramework=".NETFramework4.7.1"></group>
 		<group>
-			<dependency id="OpenMRU.Core" version="1.0.0" />
+			<dependency id="OpenMRU.Core" version="1.1.0" />
 		</group>
 	</dependencies>
   </metadata>
