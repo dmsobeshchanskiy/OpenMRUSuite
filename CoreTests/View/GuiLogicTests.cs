@@ -131,7 +131,7 @@ namespace CoreTests.View
 
         private void Initialize()
         {
-            var today = new DateTime(2020, 9, 20, 10, 15, 8);
+            var today = DateTime.Now;
             storage = new InMemoryMRUStorage(CreateItems(today));
             manager = new MRUManager();
             manager.Initialize(storage);

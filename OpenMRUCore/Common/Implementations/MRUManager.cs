@@ -111,7 +111,22 @@ namespace OpenMRU.Core.Common.Implementations
             ReadMRUItem();
         }
 
+        /// <summary>
+        /// Set max amount of MRU items to track. Min value is 3
+        /// </summary>
+        /// <param name="itemsCount">amount of MRU items to track (default value is 10)</param>
+        public void SetItemsCountToTrack (int itemsCount)
+        {
+            itemsMaxCount = itemsCount;
+            if (itemsMaxCount < 3)
+            {
+                itemsMaxCount = 3;
+            }
+            UpdateMRUItems();
+        }
+
         private IMRUItemStorage storage;
+        private int itemsMaxCount = 10;
 
         private bool PerformSelectItem(string path)
         {
@@ -129,6 +144,25 @@ namespace OpenMRU.Core.Common.Implementations
 
         private void UpdateMRUItems()
         {
+            if (itemsMaxCount < MRUItems.Count())
+            {
+                MRUItems.Sort((MRUItem i1, MRUItem i2) => 
+                {
+                    if (i2.Pinned && !i1.Pinned)
+                    { 
+                        return 1;
+                    }
+                    else if (!i2.Pinned && i1.Pinned)
+                    { 
+                        return -1; 
+                    }
+                    else
+                    {
+                        return i2.LastAccessedDate.CompareTo(i1.LastAccessedDate);
+                    }
+                });
+            }
+            MRUItems = MRUItems.Take(itemsMaxCount).ToList();
             storage.SaveMRUItems(MRUItems);
             ReadMRUItem();
         }
