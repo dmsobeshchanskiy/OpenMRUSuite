@@ -10,7 +10,12 @@
     <Description>Open MRU Siute (core part)
 Contains interfaces and implementations for to store of records about MRU files and their management. 
 Also, contains interfaces for 'view' part and its logic.</Description>
-    <PackageReleaseNotes>Initial version for .Net Standart 2.0</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      New features:
+      - adjustable amount of MRU items to track
+      Fixed issues:
+      - correct order of MRU items
+    </PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>mru-core-logo.jpg</PackageIcon>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
@@ -18,7 +23,7 @@ Also, contains interfaces for 'view' part and its logic.</Description>
     <Product>OpenMRU.Core</Product>
     <title>Open MRU Siute (core part)</title>
     <summary>Store and management of MRU files</summary>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
