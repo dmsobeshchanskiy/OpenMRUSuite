@@ -17,20 +17,23 @@ namespace CoreTests.Common
             Initialize();
             Assert.IsTrue(manager.MRUItems.Count == 4);
             Assert.IsTrue(listChangedWasInvoked);
-            Assert.IsTrue(manager.MRUItems[0].FilePath == "path1");
-            Assert.IsTrue(manager.MRUItems[0].Pinned);
+            Assert.IsTrue(manager.MRUItems[0].FilePath == "path1", "wrong item 0");
+            Assert.IsTrue(manager.MRUItems[0].Pinned, "item 0 not pinned");
+            Assert.IsTrue(manager.MRUItems[1].FilePath == "path2", "wrong item 1");
+            Assert.IsTrue(manager.MRUItems[2].FilePath == "path3", "wrong item 2");
+            Assert.IsTrue(manager.MRUItems[3].FilePath == "path4", "wrong item 3");
         }
 
         [TestMethod]
         public void ShouldAddNewMRUItem()
         {
             Initialize();
-            manager.AddFile("path6");
+            manager.AddFile("path6"); // added item should be on top, but under pinned item4
             Assert.IsTrue(manager.MRUItems.Count == 5, "wrong items count");
             Assert.IsTrue(listChangedWasInvoked, "event was not invoked");
-            Assert.IsTrue(manager.MRUItems[4].FilePath == "path6");
-            Assert.IsFalse(manager.MRUItems[4].Pinned);
-            Assert.IsTrue(manager.MRUItems[4].SelectedCount == 1);
+            Assert.IsTrue(manager.MRUItems[1].FilePath == "path6");
+            Assert.IsFalse(manager.MRUItems[1].Pinned);
+            Assert.IsTrue(manager.MRUItems[1].SelectedCount == 1);
             Assert.IsFalse(itemSelectedWasInvoked, "Item selected was invoked on adding");
         }
 
@@ -58,10 +61,10 @@ namespace CoreTests.Common
         {
             Initialize();
             manager.RemoveFile("path1");
-            Assert.IsTrue(manager.MRUItems.Count == 3);
-            Assert.IsTrue(listChangedWasInvoked);
-            Assert.IsTrue(manager.MRUItems[0].FilePath == "path2");
-            Assert.IsFalse(manager.MRUItems[0].Pinned);
+            Assert.IsTrue(manager.MRUItems.Count == 3, "wrong items count");
+            Assert.IsTrue(listChangedWasInvoked, "event was not invoked");
+            Assert.IsTrue(manager.MRUItems[0].FilePath == "path2", "wrong item 0");
+            Assert.IsFalse(manager.MRUItems[0].Pinned, "item 0 not pinned");
         }
 
         [TestMethod]
@@ -235,10 +238,10 @@ namespace CoreTests.Common
                 LastAccessedDate = new System.DateTime(2019, 4, 24)
             };
             items.Add(item1);
-            items.Add(item2);
-            items.Add(item3);
             items.Add(item4);
-
+            items.Add(item3);
+            items.Add(item2);
+           
             return items;
         }
     }

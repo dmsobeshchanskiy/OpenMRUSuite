@@ -146,30 +146,36 @@ namespace OpenMRU.Core.Common.Implementations
         {
             if (itemsMaxCount < MRUItems.Count())
             {
-                MRUItems.Sort((MRUItem i1, MRUItem i2) => 
-                {
-                    if (i2.Pinned && !i1.Pinned)
-                    { 
-                        return 1;
-                    }
-                    else if (!i2.Pinned && i1.Pinned)
-                    { 
-                        return -1; 
-                    }
-                    else
-                    {
-                        return i2.LastAccessedDate.CompareTo(i1.LastAccessedDate);
-                    }
-                });
+                SortMRUItems();
+                MRUItems = MRUItems.Take(itemsMaxCount).ToList();
             }
-            MRUItems = MRUItems.Take(itemsMaxCount).ToList();
             storage.SaveMRUItems(MRUItems);
             ReadMRUItem();
+        }
+
+        private void SortMRUItems()
+        {
+            MRUItems.Sort((MRUItem i1, MRUItem i2) =>
+            {
+                if (i2.Pinned && !i1.Pinned)
+                {
+                    return 1;
+                }
+                else if (!i2.Pinned && i1.Pinned)
+                {
+                    return -1;
+                }
+                else
+                {
+                    return i2.LastAccessedDate.CompareTo(i1.LastAccessedDate);
+                }
+            });
         }
 
         private void ReadMRUItem()
         {
             MRUItems = storage.ReadMRUItems() as List<MRUItem>;
+            SortMRUItems();
             MRUItemsListChanged?.Invoke();
         }
     }
