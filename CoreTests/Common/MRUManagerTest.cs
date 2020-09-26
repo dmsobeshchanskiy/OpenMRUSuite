@@ -153,6 +153,27 @@ namespace CoreTests.Common
             Assert.IsTrue(manager.MRUItems.FirstOrDefault(i => i.FilePath == "path3") == null, "with path3");
         }
 
+        [TestMethod]
+        public void ShouldNotUpdateItemsOnMaxAmountExceeded_AllExisteArePinned()
+        {
+            Initialize();
+            manager.ChangePinStateForFile("path2");
+            manager.ChangePinStateForFile("path3");
+            manager.ChangePinStateForFile("path4");
+            manager.SetItemsCountToTrack(4);
+
+            manager.AddFile("path6");
+
+            Assert.IsTrue(manager.MRUItems.Count == 4, "wrong items count");
+            Assert.IsTrue(listChangedWasInvoked, "change event was not called");
+
+            Assert.IsTrue(manager.MRUItems.FirstOrDefault(i => i.FilePath == "path1") != null, "no path1");
+            Assert.IsTrue(manager.MRUItems.FirstOrDefault(i => i.FilePath == "path2") != null, "no path2");
+            Assert.IsTrue(manager.MRUItems.FirstOrDefault(i => i.FilePath == "path3") != null, "no path3");
+            Assert.IsTrue(manager.MRUItems.FirstOrDefault(i => i.FilePath == "path4") != null, "no path4");
+            Assert.IsTrue(manager.MRUItems.FirstOrDefault(i => i.FilePath == "path6") == null, "with path6");
+        }
+
 
         private MRUManager manager;
         private List<MRUItem> mruItems;
