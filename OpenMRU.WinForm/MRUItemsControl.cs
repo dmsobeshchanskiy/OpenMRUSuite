@@ -33,6 +33,7 @@ namespace OpenMRU.WinForm
 
         public void ShowMRUItems(List<MRUItemsContainer> containers)
         {
+            panelItems.SuspendLayout();
             ItemViews = new List<IMRUItemView>();
             panelItems.Controls.Clear();
             linkLabelClearAll.Visible = containers.Count > 0;
@@ -50,6 +51,7 @@ namespace OpenMRU.WinForm
                 };
                 panelItems.Controls.Add(noItemsCaption);
             }
+            panelItems.ResumeLayout();
         }
 
         public bool IsActionAllowed(string actionDescription)
@@ -68,11 +70,13 @@ namespace OpenMRU.WinForm
         private readonly int leftMargin = 4;
         private readonly int rightMargin = 4;
         private readonly int spaceBetween = 2;
+        private int currentTopPosition = 0;
         private MRUGuiLogic logic;
 
         private void DisplayContainers(List<MRUItemsContainer> containers)
         {
-            int currentTopPosition = 0;
+            panelItems.VerticalScroll.Value = 0;
+            currentTopPosition = 0;
             foreach (MRUItemsContainer container in containers)
             {
                 Label groupCaption = new Label
@@ -89,14 +93,13 @@ namespace OpenMRU.WinForm
                     MRUItemControl mruControl = new MRUItemControl();
                     panelItems.Controls.Add(mruControl);
                     mruControl.Initialize(item, localization.ItemLocalization, imageForItem);
-                    mruControl.Width = panelItems.Width - 2;
                     mruControl.Top = currentTopPosition;
                     mruControl.Left = 1;
-                    mruControl.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
                     ItemViews.Add(mruControl);
                     currentTopPosition += mruControl.Height;
                 }
             }
+            CorrectWidthForItems();
         }
 
         private void LinkLabelClearAll_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -127,9 +130,29 @@ namespace OpenMRU.WinForm
             
         }
 
+        private void CorrectWidthForItems()
+        {
+            if (ItemViews == null || ItemViews.Count == 0)
+            {
+                return;
+            }
+            int width = panelItems.Width - 2;
+            if (currentTopPosition > this.panelItems.Height)
+            {
+                width = panelItems.Width - 18;
+            }
+            ItemViews.ForEach((IMRUItemView item) =>
+            {
+                Control itemControl = item as Control;
+                itemControl.Width = width;
+                // itemControl.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
+            });
+        }
+
         private void MRUItemsControl_SizeChanged(object sender, EventArgs e)
         {
             RepositionHeader();
+            CorrectWidthForItems();
         }
 
         private void buttonClearFilter_Click(object sender, EventArgs e)
