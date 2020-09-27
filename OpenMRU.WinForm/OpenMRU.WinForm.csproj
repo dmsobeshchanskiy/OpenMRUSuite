@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OpenMRU.Core, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\OpenMRU.Core.1.1.0\lib\netstandard2.0\OpenMRU.Core.dll</HintPath>
+    <Reference Include="OpenMRU.Core, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\OpenMRU.Core.1.2.0\lib\netstandard2.0\OpenMRU.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
