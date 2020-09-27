@@ -75,6 +75,7 @@ namespace OpenMRU.WinForm
 
         private void DisplayContainers(List<MRUItemsContainer> containers)
         {
+            int scrollPosition = panelItems.VerticalScroll.Value;
             panelItems.VerticalScroll.Value = 0;
             currentTopPosition = 0;
             foreach (MRUItemsContainer container in containers)
@@ -100,6 +101,7 @@ namespace OpenMRU.WinForm
                 }
             }
             CorrectWidthForItems();
+            panelItems.VerticalScroll.Value = scrollPosition;
         }
 
         private void LinkLabelClearAll_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
