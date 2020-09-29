@@ -1,5 +1,6 @@
 ﻿using OpenMRU.Core.Common.Implementations;
 using OpenMRU.Core.View.Localization;
+using OpenMRU.WinForm.Menu;
 using System;
 using System.Windows.Forms;
 
@@ -23,6 +24,11 @@ namespace OpenMRU.WinForm.Demo
             manager.MRUItemSelected += Manager_MRUItemSelected;
             // init GUI control with created manager and default (eng) localization
             mruItemsControl1.Initialize(manager, new MRUGuiLocalization());
+
+            // init menu items
+            MRUItemsMenu itemsMenu = new MRUItemsMenu();
+            itemsMenu.Initialize(manager, new MRUGuiLocalization());
+            itemsMenu.AttachToMenu(recentFilesToolStripMenuItem);
         }
 
         private void Manager_MRUItemSelected(string path)
