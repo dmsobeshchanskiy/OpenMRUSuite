@@ -9,10 +9,17 @@ namespace OpenMRU.WinForm.Menu
     public class MRUItemsMenu : MRUItemsBase
     {
         private ToolStripMenuItem menuItem;
+        private string menuItemAppearance = "";
 
         public void AttachToMenu(ToolStripMenuItem menuItem)
         {
+            AttachToMenu(menuItem, string.Empty);
+        }
+
+        public void AttachToMenu(ToolStripMenuItem menuItem, string menuItemAppearance)
+        {
             this.menuItem = menuItem;
+            this.menuItemAppearance = menuItemAppearance;
             AttachMenuItems();
         }
 
@@ -44,6 +51,7 @@ namespace OpenMRU.WinForm.Menu
             menuItem.DropDownItems.Clear();
             ItemViews.ForEach(itemView =>
             {
+                (itemView as MRUItemMenu).Appearance = menuItemAppearance;
                 menuItem.DropDownItems.Add(itemView as ToolStripMenuItem);
             });
             

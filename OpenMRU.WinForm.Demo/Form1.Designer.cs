@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.ButtonOpen = new System.Windows.Forms.Button();
-            this.mruItemsControl1 = new OpenMRU.WinForm.MRUItemsControl();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recentFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mruItemsControl1 = new OpenMRU.WinForm.MRUItemsControl();
+            this.recentcustomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -51,15 +53,6 @@
             this.ButtonOpen.Text = "OPEN FILE";
             this.ButtonOpen.UseVisualStyleBackColor = true;
             this.ButtonOpen.Click += new System.EventHandler(this.ButtonOpen_Click);
-            // 
-            // mruItemsControl1
-            // 
-            this.mruItemsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mruItemsControl1.Location = new System.Drawing.Point(0, 0);
-            this.mruItemsControl1.MinimumSize = new System.Drawing.Size(160, 200);
-            this.mruItemsControl1.Name = "mruItemsControl1";
-            this.mruItemsControl1.Size = new System.Drawing.Size(304, 416);
-            this.mruItemsControl1.TabIndex = 2;
             // 
             // splitContainer1
             // 
@@ -95,13 +88,16 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
-            this.recentFilesToolStripMenuItem});
+            this.recentFilesToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.recentcustomToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
+            this.openToolStripMenuItem.Enabled = false;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
@@ -111,6 +107,26 @@
             this.recentFilesToolStripMenuItem.Name = "recentFilesToolStripMenuItem";
             this.recentFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.recentFilesToolStripMenuItem.Text = "Recent files";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // mruItemsControl1
+            // 
+            this.mruItemsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mruItemsControl1.Location = new System.Drawing.Point(0, 0);
+            this.mruItemsControl1.MinimumSize = new System.Drawing.Size(160, 200);
+            this.mruItemsControl1.Name = "mruItemsControl1";
+            this.mruItemsControl1.Size = new System.Drawing.Size(304, 416);
+            this.mruItemsControl1.TabIndex = 2;
+            // 
+            // recentcustomToolStripMenuItem
+            // 
+            this.recentcustomToolStripMenuItem.Name = "recentcustomToolStripMenuItem";
+            this.recentcustomToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.recentcustomToolStripMenuItem.Text = "Recent (custom)";
             // 
             // Form1
             // 
@@ -141,6 +157,8 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recentFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem recentcustomToolStripMenuItem;
     }
 }
 

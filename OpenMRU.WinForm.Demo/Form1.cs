@@ -29,6 +29,12 @@ namespace OpenMRU.WinForm.Demo
             MRUItemsMenu itemsMenu = new MRUItemsMenu();
             itemsMenu.Initialize(manager, new MRUGuiLocalization());
             itemsMenu.AttachToMenu(recentFilesToolStripMenuItem);
+
+
+            // init menu items - custom appearance
+            MRUItemsMenu itemsMenu2 = new MRUItemsMenu();
+            itemsMenu2.Initialize(manager, new MRUGuiLocalization());
+            itemsMenu2.AttachToMenu(recentcustomToolStripMenuItem, "%FileName% - [%Path%] - [%AccessDate%]");
         }
 
         private void Manager_MRUItemSelected(string path)
