@@ -2,12 +2,16 @@
 
 ### About
 
-OpenMRU.WinForm is a part of OpenMRUSuite and contains WinForm GUI controls for "MRU (Most resently used) files" functionality. (Similar to VisualStudio start window)
+OpenMRU.WinForm is a part of OpenMRUSuite and contains WinForm GUI controls for "MRU (Most resently used) files" functionality. (Both menu-like control and control similar to one on VisualStudio start window)
 
 
 ### Quick start
 
-For to use controls from package, add them to your Toolbox palette by reference this package, then drag-and-drop MRUItemsControl to your form and initialize it with manager and localization. See code below for details (consider you have a form 'Form1', MRUItemsControl 'mruItemsControl1' and Button 'ButtonOpen' on it):
+For to use controls from package, add them to your Toolbox palette by reference this package, then drag-and-drop MRUItemsControl to your form and initialize it with manager and localization.
+
+For to use menu-like control, create ToolStripMenuItem item using visual editor, create MRUItemsMenu instance and initialize it with manager and localization. After that, attach MRUItemsMenu instance to certain ToolStripMenuItem item.
+
+See code below for details (consider you have a form 'Form1', MRUItemsControl 'mruItemsControl1', Button 'ButtonOpen' and two ToolStripMenuItems 'recentFilesToolStripMenuItem' and 'recentcustomToolStripMenuItem' on it):
 
     public partial class Form1 : Form
     {
@@ -27,6 +31,17 @@ For to use controls from package, add them to your Toolbox palette by reference 
             manager.MRUItemSelected += Manager_MRUItemSelected;
             // init GUI control with created manager and default (eng) localization
             mruItemsControl1.Initialize(manager, new MRUGuiLocalization());
+
+            // init menu items
+            MRUItemsMenu itemsMenu = new MRUItemsMenu();
+            itemsMenu.Initialize(manager, new MRUGuiLocalization());
+            itemsMenu.AttachToMenu(recentFilesToolStripMenuItem);
+
+
+            // init menu items - custom appearance
+            MRUItemsMenu itemsMenu2 = new MRUItemsMenu();
+            itemsMenu2.Initialize(manager, new MRUGuiLocalization());
+            itemsMenu2.AttachToMenu(recentcustomToolStripMenuItem, "%FileName% - [%Path%] - [%AccessDate%]");
         }
 
         private void Manager_MRUItemSelected(string path)
