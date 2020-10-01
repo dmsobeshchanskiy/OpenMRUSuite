@@ -4,34 +4,29 @@ using System.Windows.Forms;
 using OpenMRU.Core.View.Interfaces;
 using OpenMRU.Core.Common.Interfaces;
 using OpenMRU.Core.View.Localization;
-using OpenMRU.Core.View.Logic;
 using OpenMRU.Core.Common.Models;
+using OpenMRU.WinForm.Base;
 
 namespace OpenMRU.WinForm
 {
-    public partial class MRUItemsControl : UserControl, IMRUItemsView
+    public partial class MRUItemsControl : MRUItemsBase, IMRUItemsView
     {
-        public event Action ClearMRUItemsRequested;
 
-        public List<IMRUItemView> ItemViews { get; private set; }
-
-
-        public void Initialize(IMRUManager manager, MRUGuiLocalization localization)
+        public override void Initialize(IMRUManager manager, MRUGuiLocalization localization)
         {
             Initialize(manager, localization, string.Empty);
         }
 
         public void Initialize(IMRUManager manager, MRUGuiLocalization localization, string imageForItem)
         {
-            this.localization = localization;
+            base.Initialize(manager, localization);
             this.imageForItem = imageForItem;
             this.labelCaption.Text = localization.Caption;
             this.linkLabelClearAll.Text = localization.ClearAllLabel;
             RepositionHeader();
-            logic = new MRUGuiLogic(this, manager, localization);
         }
 
-        public void ShowMRUItems(List<MRUItemsContainer> containers)
+        public override void ShowMRUItems(List<MRUItemsContainer> containers)
         {
             panelItems.SuspendLayout();
             ItemViews = new List<IMRUItemView>();
@@ -54,24 +49,16 @@ namespace OpenMRU.WinForm
             panelItems.ResumeLayout();
         }
 
-        public bool IsActionAllowed(string actionDescription)
-        {
-            return MessageBox.Show(actionDescription, localization.ConfirmActionDialogCaption, MessageBoxButtons.YesNo) == DialogResult.Yes;
-        }
-
         public MRUItemsControl()
         {
             InitializeComponent();
         }
 
-        private MRUGuiLocalization localization;
         private string imageForItem;
-
         private readonly int leftMargin = 4;
         private readonly int rightMargin = 4;
         private readonly int spaceBetween = 2;
         private int currentTopPosition = 0;
-        private MRUGuiLogic logic;
 
         private void DisplayContainers(List<MRUItemsContainer> containers)
         {
@@ -106,7 +93,7 @@ namespace OpenMRU.WinForm
 
         private void LinkLabelClearAll_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ClearMRUItemsRequested?.Invoke();
+            InvokeMRUItemsClearing();
         }
     
         private void RepositionHeader()

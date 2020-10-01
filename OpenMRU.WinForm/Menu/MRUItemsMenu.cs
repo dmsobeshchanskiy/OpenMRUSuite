@@ -1,5 +1,6 @@
 ﻿using OpenMRU.Core.Common.Models;
 using OpenMRU.Core.View.Interfaces;
+using OpenMRU.WinForm.Base;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;

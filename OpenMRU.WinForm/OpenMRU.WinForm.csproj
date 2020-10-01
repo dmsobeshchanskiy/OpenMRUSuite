@@ -50,14 +50,18 @@
     <Compile Include="Menu\MRUItemMenu.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MRUItemsBase.cs" />
+    <Compile Include="Base\MRUItemsBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="MRUItemsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MRUItemsControl.Designer.cs">
       <DependentUpon>MRUItemsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu\MRUItemsMenu.cs" />
+    <Compile Include="Menu\MRUItemsMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

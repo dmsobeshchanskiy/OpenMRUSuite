@@ -7,9 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace OpenMRU.WinForm
+namespace OpenMRU.WinForm.Base
 {
-    public abstract class MRUItemsBase : IMRUItemsView
+    public abstract class MRUItemsBase: UserControl, IMRUItemsView
     {
         public event Action ClearMRUItemsRequested;
 
@@ -30,6 +30,11 @@ namespace OpenMRU.WinForm
         public virtual void ShowMRUItems(List<MRUItemsContainer> containers)
         {
             throw new NotImplementedException();
+        }
+
+        protected void InvokeMRUItemsClearing()
+        {
+            ClearMRUItemsRequested?.Invoke();
         }
 
         protected MRUGuiLocalization localization;
