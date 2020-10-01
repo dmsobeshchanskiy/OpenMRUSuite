@@ -9,14 +9,27 @@ using OpenMRU.WinForm.Base;
 
 namespace OpenMRU.WinForm
 {
+    /// <summary>
+    /// WinForm control for to show MRU items
+    /// </summary>
     public partial class MRUItemsControl : MRUItemsBase, IMRUItemsView
     {
-
+        /// <summary>
+        /// Init control: reads MRU items and shows them on 'view'
+        /// </summary>
+        /// <param name="manager">IMRUManager implementation instance</param>
+        /// <param name="localization">localization instance</param>
         public override void Initialize(IMRUManager manager, MRUGuiLocalization localization)
         {
             Initialize(manager, localization, string.Empty);
         }
 
+        /// <summary>
+        /// Init control: reads MRU items and shows them on 'view'
+        /// </summary>
+        /// <param name="manager">IMRUManager implementation instance</param>
+        /// <param name="localization">localization instance</param>
+        /// <param name="imageForItem">image for to use with given MRU item</param>
         public void Initialize(IMRUManager manager, MRUGuiLocalization localization, string imageForItem)
         {
             base.Initialize(manager, localization);
@@ -26,6 +39,10 @@ namespace OpenMRU.WinForm
             RepositionHeader();
         }
 
+        /// <summary>
+        /// Display MRU item containers
+        /// </summary>
+        /// <param name="containers">MRU containers to display</param>
         public override void ShowMRUItems(List<MRUItemsContainer> containers)
         {
             panelItems.SuspendLayout();
@@ -49,6 +66,9 @@ namespace OpenMRU.WinForm
             panelItems.ResumeLayout();
         }
 
+        /// <summary>
+        /// default ctor
+        /// </summary>
         public MRUItemsControl()
         {
             InitializeComponent();

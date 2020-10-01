@@ -7,16 +7,36 @@ using System.Windows.Forms;
 
 namespace OpenMRU.WinForm.Menu
 {
+    /// <summary>
+    /// WinForm UI control to display MRU items as ToolStripMenu items
+    /// </summary>
     public class MRUItemsMenu : MRUItemsBase
     {
         private ToolStripMenuItem menuItem;
         private string menuItemAppearance = "";
 
+        /// <summary>
+        /// Set parent menu item. MRU menu items will be attached to it as children (dropdown)
+        /// </summary>
+        /// <param name="menuItem">ToolStripMenuItem instance</param>
         public void AttachToMenu(ToolStripMenuItem menuItem)
         {
             AttachToMenu(menuItem, string.Empty);
         }
 
+        /// <summary>
+        /// Set parent menu item. MRU menu items will be attached to it as children (dropdown)
+        /// </summary>
+        /// <param name="menuItem">ToolStripMenuItem instance</param>
+        /// <param name="menuItemAppearance">Menu item appearance. Recognized patterns are:
+        /// <list type="bullet">
+        /// <item>%FileName% - just file name (w/o path)</item>
+        /// <item>%Path% - path to file (excluding file name)</item>
+        /// <item>%FullFileName% - path to file + file name</item>
+        /// <item>%AccessDate% - last access date of MRU item</item>
+        /// </list>
+        /// default is: %FullFileName% (if empty or null)
+        /// </param>
         public void AttachToMenu(ToolStripMenuItem menuItem, string menuItemAppearance)
         {
             this.menuItem = menuItem;
@@ -24,6 +44,10 @@ namespace OpenMRU.WinForm.Menu
             AttachMenuItems();
         }
 
+        /// <summary>
+        /// Display MRU item containers
+        /// </summary>
+        /// <param name="containers">MRU containers to display</param>
         public override void ShowMRUItems(List<MRUItemsContainer> containers)
         {
             if (ItemViews != null)

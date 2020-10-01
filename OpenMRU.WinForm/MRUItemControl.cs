@@ -8,17 +8,40 @@ using OpenMRU.Core.View.Localization;
 
 namespace OpenMRU.WinForm
 {
+    /// <summary>
+    /// WinForm control for to display MRU item
+    /// </summary>
     public partial class MRUItemControl : UserControl, IMRUItemView
     {
+        /// <summary>
+        /// Fires when pin item requested
+        /// </summary>
         public event Action<string> PinItemRequested;
+        /// <summary>
+        /// Fires when delete item requested
+        /// </summary>
         public event Action<string> DeleteItemRequested;
+        /// <summary>
+        /// Fires when item selected
+        /// </summary>
         public event Action<string> ItemSelected;
 
+        /// <summary>
+        /// Init control with given MRU item
+        /// </summary>
+        /// <param name="item">MRU item to show on control</param>
+        /// <param name="localization">localization instance</param>
         public void Initialize(MRUItem item, MRUGuiItemLocalization localization)
         {
             this.Initialize(item, localization, Properties.Resources.icons8_file_64);
         }
 
+        /// <summary>
+        /// Init control with given MRU item
+        /// </summary>
+        /// <param name="item">MRU item to show on control</param>
+        /// <param name="localization">localization instance</param>
+        /// <param name="imagePath">image for menu item (currently not supported)</param>
         public void Initialize(MRUItem item, MRUGuiItemLocalization localization, string imagePath)
         {
             Image itemImage = Properties.Resources.icons8_file_64;
@@ -39,6 +62,9 @@ namespace OpenMRU.WinForm
         private Color normalColor = SystemColors.Control;
         private readonly Color hoveredColor = SystemColors.ControlDark;
 
+        /// <summary>
+        /// Default ctor
+        /// </summary>
         public MRUItemControl()
         {
             InitializeComponent();

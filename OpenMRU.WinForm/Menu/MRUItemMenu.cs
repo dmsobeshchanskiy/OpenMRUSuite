@@ -7,10 +7,22 @@ using System.Windows.Forms;
 
 namespace OpenMRU.WinForm.Menu
 {
+    /// <summary>
+    /// WinFrom control for to display MRU item as ToolStripMenuItem
+    /// </summary>
     public class MRUItemMenu : ToolStripMenuItem, IMRUItemView
     {
+        /// <summary>
+        /// Fires when pin item requested
+        /// </summary>
         public event Action<string> PinItemRequested;
+        /// <summary>
+        /// Fires when delete item requested
+        /// </summary>
         public event Action<string> DeleteItemRequested;
+        /// <summary>
+        /// Fires when item selected
+        /// </summary>
         public event Action<string> ItemSelected;
 
         /// <summary>
@@ -38,11 +50,22 @@ namespace OpenMRU.WinForm.Menu
         private MRUItem item;
         private string appearance = "%FullFileName%";
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="localization"></param>
         public void Initialize(MRUItem item, MRUGuiItemLocalization localization)
         {
             Initialize(item, localization, null);
         }
 
+        /// <summary>
+        /// Init control with given MRU item
+        /// </summary>
+        /// <param name="item">MRU item to show on control</param>
+        /// <param name="localization">localization instance</param>
+        /// <param name="imagePathForItem">image for menu item (currently not supported)</param>
         public void Initialize(MRUItem item, MRUGuiItemLocalization localization, string imagePathForItem)
         {
             this.item = item;
