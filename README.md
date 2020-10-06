@@ -28,7 +28,7 @@ MRUManager is responsible for management of MRU items and uses IMRUItemStorage i
 So, if you want to use another way of storing MRU items (for exmaple, in DB), or provide own logic for MRU items management - you can provide own implementation (s) of corresponding interfaces and use them with OpenMRUSuite.
 
 
-3. Add control (IMRUItemsView implementation from step 1) to your application GUI and bind it to OpenMRU.Core.View.LogicMRUGuiLogic. For doing this you should create LogicMRUGuiLogic instance passing next parameters to its constructor: 
+3. Add control (IMRUItemsView implementation from step 1) to your application GUI and bind it to OpenMRU.Core.View.Logic.MRUGuiLogic. For doing this you should create MRUGuiLogic instance passing next parameters to its constructor: 
 - IMRUItemsView implementation (control that was just added); 
 - IMRUManger implementation (default or your own)
 - MRUGuiLocalization class instance from OpenMRU.Core.View.Localization namespace. You can just create instance of this class by calling constructor without parameters for default english localization. Or create instance of localization class and assign localized values to corresponding properties of this class.
