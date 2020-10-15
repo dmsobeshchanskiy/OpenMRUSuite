@@ -33,7 +33,7 @@ namespace OpenMRU.WinForm
         /// <param name="localization">localization instance</param>
         public void Initialize(MRUItem item, MRUGuiItemLocalization localization)
         {
-            this.Initialize(item, localization, Properties.Resources.icons8_file_64);
+            this.Initialize(item, localization, "");
         }
 
         /// <summary>
@@ -44,18 +44,7 @@ namespace OpenMRU.WinForm
         /// <param name="imagePath">image for menu item (currently not supported)</param>
         public void Initialize(MRUItem item, MRUGuiItemLocalization localization, string imagePath)
         {
-            Image itemImage = Properties.Resources.icons8_file_64;
-            try
-            {
-                if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
-                {
-                    itemImage = Image.FromFile(imagePath);
-                }
-            } 
-            catch (Exception)
-            {
-                // TODO: provide some kind of notification or similar
-            }
+            Image itemImage = ImageResolver.GetImageForItem(item, imagePath);
             this.Initialize(item, localization, itemImage);
         }
 

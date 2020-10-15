@@ -42,6 +42,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageResolver.cs" />
     <Compile Include="MRUItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

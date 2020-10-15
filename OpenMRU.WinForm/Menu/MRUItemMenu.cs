@@ -70,6 +70,7 @@ namespace OpenMRU.WinForm.Menu
         {
             this.item = item;
             UpdateAppearance();
+            this.Image = ImageResolver.GetImageForItem(item, imagePathForItem);
             // subscribe to events
             this.Click += MRUItemMenu_Click;
         }
