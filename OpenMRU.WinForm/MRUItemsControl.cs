@@ -63,6 +63,8 @@ namespace OpenMRU.WinForm
                 };
                 panelItems.Controls.Add(noItemsCaption);
             }
+            buttonClearFilter.Enabled = containers.Count > 0;
+            textBoxFilter.Enabled = containers.Count > 0;
             panelItems.ResumeLayout();
         }
 

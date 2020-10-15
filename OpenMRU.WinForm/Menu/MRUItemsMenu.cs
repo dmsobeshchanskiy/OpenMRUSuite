@@ -1,6 +1,7 @@
 ﻿using OpenMRU.Core.Common.Models;
 using OpenMRU.Core.View.Interfaces;
 using OpenMRU.WinForm.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -74,13 +75,35 @@ namespace OpenMRU.WinForm.Menu
                 return;
             }
             menuItem.DropDownItems.Clear();
-            ItemViews.ForEach(itemView =>
-            {
-                (itemView as MRUItemMenu).Appearance = menuItemAppearance;
-                menuItem.DropDownItems.Add(itemView as ToolStripMenuItem);
-            });
             
+            if (ItemViews != null && ItemViews.Count() > 0)
+            {
+                menuItem.Enabled = true;
+                ItemViews.ForEach(itemView =>
+                {
+                    (itemView as MRUItemMenu).Appearance = menuItemAppearance;
+                    menuItem.DropDownItems.Add(itemView as ToolStripMenuItem);
+                });
+                menuItem.DropDownItems.Add(new ToolStripSeparator());
+                menuItem.DropDownItems.Add(CreateClearAllMenu());
+            } else
+            {
+                menuItem.Enabled = false;
+            }
         }
-        
+
+        private ToolStripMenuItem CreateClearAllMenu()
+        {
+            ToolStripMenuItem item = new ToolStripMenuItem();
+            item.Text = localization.ClearAllLabel;
+            item.Click += Item_ClearAll_Click;
+
+            return item;
+        }
+
+        private void Item_ClearAll_Click(object sender, EventArgs e)
+        {
+            InvokeMRUItemsClearing();
+        }
     }
 }
