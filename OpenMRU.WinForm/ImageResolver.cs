@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace OpenMRU.WinForm
     /// </summary>
     public static class ImageResolver
     {
+        [DllImport("shell32.dll", EntryPoint = "FindExecutable")]
+        private static extern long FindExecutableA(string lpFile, string lpDirectory, StringBuilder lpResult);
         /// <summary>
         /// Returns image for given MRU item
         /// </summary>
@@ -32,6 +35,10 @@ namespace OpenMRU.WinForm
                 } else
                 {
                     itemImage = GetImageFromFile(item);
+                    if (itemImage == null)
+                    {
+                        itemImage = GetAssociatedImage(item);
+                    }
                 }
             }
             catch (Exception)
@@ -41,10 +48,38 @@ namespace OpenMRU.WinForm
             return itemImage;
         }
 
+        private static Image GetAssociatedImage(MRUItem item)
+        {
+            string executable = FindExecutable(item.FilePath);
+            Icon iconForFile = Icon.ExtractAssociatedIcon(executable);
+            return iconForFile.ToBitmap();
+        }
+
+        private static string FindExecutable(string fileName)
+        {
+            string executable = string.Empty;
+            StringBuilder objResultBuffer = new StringBuilder(1024);
+            long lngResult = FindExecutableA(fileName, string.Empty, objResultBuffer);
+            if (lngResult >= 32)
+            {
+                executable = objResultBuffer.ToString();
+            }
+            return executable;
+        }
+
         private static Image GetImageFromFile(MRUItem item)
         {
-            Icon iconForFile = Icon.ExtractAssociatedIcon(item.FilePath);
-            return iconForFile.ToBitmap();
+            Image image;
+            try
+            {
+                Icon iconForFile = Icon.ExtractAssociatedIcon(item.FilePath);
+                image = iconForFile.ToBitmap();
+            }
+            catch(Exception)
+            {
+                image = null;
+            }
+            return image;
         }
     }
 }
