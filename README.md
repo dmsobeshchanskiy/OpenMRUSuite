@@ -102,11 +102,13 @@ See code below for details (consider you have a form 'Form1', MRUItemsControl 'm
 
 For customizing of presentation of menu items, use next patterns:
 
-// %FileName% - just file name (w/o path)
-// %Path% - path to file (excluding file name)
-// %FullFileName% - path to file + file name
-// %AccessDate% - last access date of MRU item
-// default is: %FullFileName%
+	// string that represent appearance
+	// available placeholders:
+	// %FileName% - just file name (w/o path)
+	// %Path% - path to file (excluding file name)
+	// %FullFileName% - path to file + file name
+	// %AccessDate% - last access date of MRU item
+	// default is: %FullFileName%
 
 # Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
