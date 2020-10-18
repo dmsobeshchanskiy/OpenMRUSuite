@@ -1,5 +1,6 @@
 # OpenMRUSuite
-Kit for adding Most Recently Used (MRU) files functionality into your .Net applications.
+Kit for adding Most Recently Used (MRU) files functionality into your .Net applications. 
+Please see description on https://www.codeproject.com/Articles/5282447/OpenMRUSuite-Flexible-Controls-for-MRU-Functionali
 
 ![GUI component](/Media/demo.png)
 
@@ -99,7 +100,13 @@ See code below for details (consider you have a form 'Form1', MRUItemsControl 'm
         }
     }
 
+For customizing of presentation of menu items, use next patterns:
 
+// %FileName% - just file name (w/o path)
+// %Path% - path to file (excluding file name)
+// %FullFileName% - path to file + file name
+// %AccessDate% - last access date of MRU item
+// default is: %FullFileName%
 
 # Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
