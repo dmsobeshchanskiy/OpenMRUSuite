@@ -14,6 +14,8 @@ namespace OpenMRU.WinForm.Menu
     public class MRUItemsMenu : MRUItemsBase
     {
         private ToolStripMenuItem menuItem;
+        private List<ToolStripItem> menuContents;
+
         private string menuItemAppearance = "";
 
         /// <summary>
@@ -56,6 +58,7 @@ namespace OpenMRU.WinForm.Menu
                 ItemViews.Clear();
             }
             ItemViews = new List<IMRUItemView>();
+            menuContents = new List<ToolStripItem>();
             containers.ForEach(container =>
             {
                 container.Items.ToList().ForEach(item =>
@@ -63,8 +66,12 @@ namespace OpenMRU.WinForm.Menu
                     var mruItemMenu = new MRUItemMenu();
                     mruItemMenu.Initialize(item, localization.ItemLocalization);
                     ItemViews.Add(mruItemMenu);
+                    menuContents.Add(mruItemMenu);
                 });
+                // add separator after container
+                menuContents.Add(new ToolStripSeparator());
             });
+            menuContents.Add(CreateClearAllMenu());
             AttachMenuItems();
         }
 
@@ -75,18 +82,19 @@ namespace OpenMRU.WinForm.Menu
                 return;
             }
             menuItem.DropDownItems.Clear();
-            
-            if (ItemViews != null && ItemViews.Count() > 0)
-            {
+            if (menuContents != null && menuContents.Count() > 0) {
                 menuItem.Enabled = true;
-                ItemViews.ForEach(itemView =>
+                menuContents.ForEach(item =>
                 {
-                    (itemView as MRUItemMenu).Appearance = menuItemAppearance;
-                    menuItem.DropDownItems.Add(itemView as ToolStripMenuItem);
+                    MRUItemMenu mruItem = item as MRUItemMenu;
+                    if (mruItem != null)
+                    {
+                        mruItem.Appearance = menuItemAppearance;
+                    }
+                    menuItem.DropDownItems.Add(item);
                 });
-                menuItem.DropDownItems.Add(new ToolStripSeparator());
-                menuItem.DropDownItems.Add(CreateClearAllMenu());
-            } else
+            }
+            else
             {
                 menuItem.Enabled = false;
             }
