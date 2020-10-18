@@ -3,6 +3,7 @@ using OpenMRU.Core.View.Interfaces;
 using OpenMRU.WinForm.Base;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -61,6 +62,10 @@ namespace OpenMRU.WinForm.Menu
             menuContents = new List<ToolStripItem>();
             containers.ForEach(container =>
             {
+                MRUContainerToolStripSeparator separator = new MRUContainerToolStripSeparator();
+                separator.Text = container.ContainerCaption;
+                separator.SetTextPresentation(this.Font, new SolidBrush(Color.Gray));
+                menuContents.Add(separator);
                 container.Items.ToList().ForEach(item =>
                 {
                     var mruItemMenu = new MRUItemMenu();
@@ -68,10 +73,12 @@ namespace OpenMRU.WinForm.Menu
                     ItemViews.Add(mruItemMenu);
                     menuContents.Add(mruItemMenu);
                 });
-                // add separator after container
-                menuContents.Add(new ToolStripSeparator());
             });
-            menuContents.Add(CreateClearAllMenu());
+            if (containers.Count() > 0)
+            {
+                menuContents.Add(new ToolStripSeparator());
+                menuContents.Add(CreateClearAllMenu());
+            }
             AttachMenuItems();
         }
 
